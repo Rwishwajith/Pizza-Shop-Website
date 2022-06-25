@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Beverages</title>
+    <link rel="icon" type="image/ico" href="favicon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis|PT+Sans" rel="stylesheet">
+   
+    </head>
+    <style>
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,600);
+body{
+  font-family: 'Raleway', Arial, sans-serif;
+}
+
+figure.snip{
+  position: relative;
+  float:left;
+  overflow: hidden;   /* clipped content, no scroll */
+  margin: 10px 1%;
+  width:480px;
+  background: gray;
+  color: #fff;
+  text-align:center;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0, 0.15);   /* horizontal vertical blur color */
+}
+figure.snip *{           /* '*':select all elements */
+  transition: all 0.5s ease;  /* smooth zoom on/out */
+  box-sizing: border-box;  
+}
+.image{                       /* left column */
+  background-color: #000000;
+  width:50%;
+  overflow:hidden;
+}
+.image img{
+  max-width:100%;
+  margin-top:40px;
+}
+figcaption{            
+  position:absolute;
+  width:50%;
+  right:0;
+  top:50%;
+  -webkit-transform: translateY(-50%); /* move up */
+  transform: translateY(-50%);
+  padding: 10px 35px;
+}
+figure.snip h4,
+figure.snip p,
+figure.snip .price{
+  margin: 0 0 8px;                     /* top left bottom */
+} 
+figure.snip h4{
+  position: absolute;                  /* inside left column */
+  width:50%;
+  color:#ffffff;
+  top:8px;
+  text-transform: uppercase;          /* capitalize words */
+  font-weight: 200; 
+  letter-spacing: 1px;                /* distance between letters */
+  z-index:1;
+}
+figure.snip p{
+  font-size:0.7em;
+  font-weight: 500;
+  line-height:1.6em;                  /* distance between lines */
+}
+figure.snip .price{
+  color:#ffffff;
+  font-size: 1.3em;
+  opacity:0.8;
+}
+
+figure.snip .price s{
+  display:inline-block;
+  padding: 0 8px 0 0;
+  font-size: 0.85em;
+  color: #f39c12;
+}
+
+figure.snip .add-to-cart{
+  text-decoration: none;
+  position: absolute;
+  color:#ffffff;
+  bottom:0;
+  right:0;
+  font-weight: 600;
+  line-height: 44px;                 /* bottom */
+  font-size: 0.75em;
+  text-transform: uppercase;
+  width:50%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+figure.snip img:hover{
+  opacity:0.6;
+  -webkit-transform: scale(1.3,1.3); /* zoom(x,y) */
+  transform: scale(1.3,1.3);
+}
+
+figure.snip .add-to-cart:hover{
+  background-color: black;
+}
+
+figure.snip button{                        
+  position:absolute;
+  bottom:50px;
+  font-size:1em;
+  color:white;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: rgba(0,0,0,0.6);
+  border: 2px solid white;
+  outline: none;
+}
+figure.snip button:hover{                        
+  background-color: white;
+  color:black;
+  border: 2px solid black;
+}
+.prev{
+  left:60%;
+}
+.next{
+  right:30px;
+}
+
+.animation-fly{
+  position:absolute;
+  z-index:99;
+  width:100px;
+  height:100px;
+  object-fit:cover;
+  border-radius:100%;
+  transition: all 1s ease;
+  animation: zoom 1.5s;    /* <=> animation-name: zoom; animation-duration: 1.5s */
+}
+
+@-webkit-keyframes zoom{           /* Google Chrome , Apple Safari */
+  0% {transform: scale(0.4);}
+  25% {transform: scale(1);}
+  50% {transform: scale(1);}
+  100% {transform: scale(0.5);}
+}
+@-moz-keyframes zoom{               /* Mozilla Firefox */
+  0% {transform: scale(0.4);}
+  25% {transform: scale(1);}
+  50% {transform: scale(1);}
+  100% {transform: scale(0.5);}
+}
+@-o-keyframes zoom{                      /*  Opera */
+  0% {transform: scale(0.4);}
+  25% {transform: scale(1);}
+  50% {transform: scale(1);}
+  100% {transform: scale(0.5);}
+}
+
+.cart{
+  position:absolute;
+  top:0;
+  right:10px;
+  text-decoration:none;
+  z-index:10;
+  animation: fadeInLeft 2s;
+}
+@-webkit-keyframes fadeInLeft {
+		0% {
+				opacity: 0;
+				-webkit-transform: translate3d(-100%, 0, 0);
+				transform: translate3d(-200%, 0, 0);
+		}
+		100% {
+				opacity: 1;
+				-webkit-transform: none;
+				transform: none;
+		}
+}
+@-moz-keyframes fadeInLeft {
+		0% {opacity: 0;-webkit-transform: translate3d(-100%, 0, 0);transform: translate3d(-200%, 0, 0);}
+		100% {opacity: 1;-webkit-transform: none;transform: none;}
+}
+@-o-keyframes fadeInLeft {
+		0% {opacity: 0;-webkit-transform: translate3d(-100%, 0, 0);transform: translate3d(-200%, 0, 0);}
+		100% {opacity: 1;-webkit-transform: none;transform: none;}
+}
+
+.cart img{
+  width:100px;
+}
+.cart span{
+  display:block;                          /* display like <p> */
+  background-color:black;
+  text-align:center;
+  margin-top:10px;
+  border-radius:5px;
+  box-shadow:5px 5px 2px #888888;
+  color: white;
+}
+
+
+
+
+/* ------------check out-------------------------- */
+.container{
+  width: 300px;
+  height:500px;
+  position:absolute;
+  right:10px;
+  top:30%;
+  text-align:center;
+  z-index:10;
+}
+.table{
+  width:98%;
+  height:200px;
+  overflow-y: scroll;     /* overflow = overflow-x + overflow-y */
+  border:2px solid black;
+  border-radius: 4px;
+  background:white;
+  padding:2%;
+}
+.col1-name{
+  width:70%;
+  height:100%;
+  float:left;
+}
+.col2-price{
+  width:29%;
+  float:left;
+  height:100%;
+}
+
+                  /* ----------Scroll Bar--------- */
+                  
+.table::-webkit-scrollbar, .modal::-webkit-scrollbar                 
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.table::-webkit-scrollbar-track, .modal::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.table::-webkit-scrollbar-thumb, .modal::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+    border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+.modal::-webkit-scrollbar-thumb{background-color:orange;}
+ 
+                /* Mozilla Firefox */
+.table::-moz-scrollbar, .modal::-moz-scrollbar                 
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.table::-moz-scrollbar-track, .modal::-moz-scrollbar-track
+{
+	-moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.table::-moz-scrollbar-thumb, .modal::-moz-scrollbar-thumb
+{
+	background-color: #000000;
+    border-radius: 10px;
+  -ms-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+.modal::-moz-scrollbar-thumb{background-color:orange;}
+   
+                    /* Opera */
+.table::-o-scrollbar, .modal::-o-scrollbar                 
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.table::-o-scrollbar-track, .modal::-o-scrollbar-track
+{
+	-moz-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.table::-o-scrollbar-thumb, .modal::-o-scrollbar-thumb
+{
+	background-color: #000000;
+    border-radius: 10px;
+  -ms-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+.modal::-o-scrollbar-thumb{background-color:orange;}
+               /* ------------End Scroll Bar-------- */
+.bin{
+  margin-bottom: 5px;
+  margin-top:5px;
+}
+.bin span{
+  width:80%;
+  float:left;
+  text-align:left;
+  padding:10px;
+}
+.bin img{
+  width:10%;
+  float:right;
+  
+}
+.total, .bin{
+  width:100%;
+  height:100px;
+  background: white;
+  color: black;
+  border: 2px solid black;
+  font-weight: bold;  
+}
+.total-text{
+  width: 70%;
+  height: 50px;
+  float:left;
+  border-right: 2px solid black;
+  background: url(http://icons.iconarchive.com/icons/custom-icon-design/flatastic-11/72/Cash-icon.png) no-repeat;
+  background-size: contain;
+  background-position: right;
+  
+  
+}
+.total-amount{
+  width:26%;
+  height:100px;
+  float:left;
+  padding-top:10px;
+}
+
+.checkout{
+  width:50%;
+  margin: auto;
+  height:100px;
+  padding-top: .5em;
+  margin-top: 2em;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  border: solid 2px #aa1414;
+  color: #ededf5;
+  border-radius: 0.4em;
+  cursor:pointer;  
+  background: rgb(190, 14, 14);
+}
+.checkout:hover{
+  animation:none;
+}
+.add-animation{
+  animation: jump 0.75s;
+  animation-iteration-count: infinite;   /*  loop animation */
+}
+.add-animation2{
+  animation: shaker 0.75s;
+  animation-iteration-count: infinite;
+}
+.disabled{
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+@-o-keyframes jump {
+  0% {
+    transform: scale(1, 1) translate(0px, 0px);
+  }
+  30% {
+    transform: scale(1, 0.8) translate(0px, 8px);
+  }
+  75% {
+    transform: scale(1, 1.1) translate(0px, -20px);
+  }
+  100% {
+    transform: scale(1, 1) translate(0px, 0px);
+  }
+}
+@-webkit-keyframes jump {
+  0% {transform: scale(1, 1) translate(0px, 0px);}
+  30% {transform: scale(1, 0.8) translate(0px, 8px);}
+  75% {transform: scale(1, 1.1) translate(0px, -20px);}
+  100% {transform: scale(1, 1) translate(0px, 0px);}
+}
+@-moz-keyframes jump {
+  0% {transform: scale(1, 1) translate(0px, 0px);}
+  30% {transform: scale(1, 0.8) translate(0px, 8px);}
+  75% {transform: scale(1, 1.1) translate(0px, -20px);}
+  100% {transform: scale(1, 1) translate(0px, 0px);}
+}
+@-webkit-keyframes shaker {
+  0% {
+    transform: rotate(0deg);
+  }
+  29% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(3deg);
+  }
+  31% {
+    transform: rotate(4deg);
+  }
+  33% {
+    transform: rotate(3deg);
+  }
+  35% {
+    transform: rotate(0deg);
+  }
+  37% {
+    transform: rotate(-3deg);
+  }
+  39% {
+    transform: rotate(-4deg);
+  }
+  41% {
+    transform: rotate(-3deg);
+  }
+  43% {
+    transform: rotate(0deg);
+  }
+  45% {
+    transform: rotate(3deg);
+  }
+  47% {
+    transform: rotate(4deg);
+  }
+  49% {
+    transform: rotate(3deg);
+  }
+  51% {
+    transform: rotate(0deg);
+  }
+  53% {
+    transform: rotate(-3deg);
+  }
+  55% {
+    transform: rotate(-4deg);
+  }
+  57% {
+    transform: rotate(-3deg);
+  }
+  59% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@-moz-keyframes shaker {
+  0% {transform: rotate(0deg);}
+  29% {transform: rotate(0deg);}
+  30% {transform: rotate(3deg);}
+  31% {transform: rotate(4deg);}
+  33% {transform: rotate(3deg);}
+  35% {transform: rotate(0deg);}
+  37% {transform: rotate(-3deg);}
+  39% {transform: rotate(-4deg);}
+  41% {transform: rotate(-3deg);}
+  43% {transform: rotate(0deg);}
+  45% {transform: rotate(3deg);}
+  47% {transform: rotate(4deg);}
+  49% {transform: rotate(3deg);}
+  51% {transform: rotate(0deg);}
+  53% {transform: rotate(-3deg);}
+  55% {transform: rotate(-4deg);}
+  57% {transform: rotate(-3deg);}
+  59% {transform: rotate(0deg);}
+  100% {transform: rotate(0deg);}
+}
+@-o-keyframes shaker {
+  0% {transform: rotate(0deg);}
+  29% {transform: rotate(0deg);}
+  30% {transform: rotate(3deg);}
+  31% {transform: rotate(4deg);}
+  33% {transform: rotate(3deg);}
+  35% {transform: rotate(0deg);}
+  37% {transform: rotate(-3deg);}
+  39% {transform: rotate(-4deg);}
+  41% {transform: rotate(-3deg);}
+  43% {transform: rotate(0deg);}
+  45% {transform: rotate(3deg);}
+  47% {transform: rotate(4deg);}
+  49% {transform: rotate(3deg);}
+  51% {transform: rotate(0deg);}
+  53% {transform: rotate(-3deg);}
+  55% {transform: rotate(-4deg);}
+  57% {transform: rotate(-3deg);}
+  59% {transform: rotate(0deg);}
+  100% {transform: rotate(0deg);}
+}
+
+         /* -------------BILL------------------- */
+.modal{
+  display:none;
+  position:fixed;
+  z-index: 99;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  background-color: rgba(0,0,0,0.4);
+  
+}
+.wrapper{
+  background-color: white;
+  width:50%;
+  box-shadow: 10px 10px 0 black; 
+  border-bottom: 1px solid white;
+  margin: 1% auto 2% auto;
+  animation: animatezoom .6s;
+  -webkit-animation: animatezoom .6s;
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@-moz-keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+@-o-keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+.wrapper:before {
+  background: linear-gradient(-135deg, #000 10px, transparent 0), linear-gradient(135deg, #000 10px, transparent 0), linear-gradient(-134deg, yellow 13px, transparent 0), linear-gradient(134deg, yellow 13px, transparent 0);
+  background-repeat: repeat;
+  background-size: 21px 32px;
+  content: "";
+  display: block;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 15px;
+}
+
+.wrapper:after {
+  background: linear-gradient(-45deg, #000 10px, transparent 0), linear-gradient(45deg, #000 10px, transparent 0), linear-gradient(-45deg, yellow 13px, transparent 0), linear-gradient(45deg, yellow 13px, transparent 0);
+  background-repeat: repeat;
+  background-size: 21px 32px;
+  content: "";
+  display: block;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 30px;
+}
+
+.bill-content{
+  width:95%;
+  margin: auto;
+}
+
+.wrapper h1{
+  text-transform: uppercase;
+}
+.box-title{
+  text-shadow: 2px 2px 0 rgb(5, 15, 155);
+}
+.price-total{
+  background:black;
+  font-size: 1.5em;
+  text-align:center;
+  color:crimson;
+  font-weight: 800;
+  padding:5px 0;
+  margin: 15px 0;
+}
+.price-total span{
+  font-size: .75em;
+  color:white;
+}
+.form-text{
+  padding: 5px;
+  display: block;
+}
+form{
+  margin: 0 -5px;
+}
+label{
+  display: block;
+  font-size: .9em;
+  text-transform: uppercase;
+  font-weight:bold;
+  margin-bottom: 5px;
+}
+input{
+  border: 3px solid black;
+  width:95%;
+  padding: 7px;
+  font-size: 1.1em;
+}
+input:focus{       /* click on */
+  outline: 0;
+  background: rgb(20, 113, 150);
+}
+.wrapper button{
+  font-size: 1.2em;
+  padding: 10px;
+  border: 0;
+  line-height: 1.6;
+  box-shadow: 3px 3px 0 black;
+  cursor: pointer;
+  background: yellow;
+  transition: ease-in all .3s;
+  font-weight: bold;
+}
+.wrapper button:hover, .wrapper button:focus{
+  background:black;
+  color:rgba(255, 255, 0, 0.568);
+  box-shadow: 5px 5px 0 yellow;
+  outline: none;
+}
+#coupon{
+  border: 3px solid black;
+  background:white;
+  color: black;
+  box-shadow: none;
+  border-radius: 4px;
+  animation: shrink  1s infinite;
+}
+#coupon:hover{
+  animation: none;
+  background: black;
+  color: rgb(0, 81, 255);
+  border: 3px solid yellow;
+}
+#end{
+  float:right;
+  margin-right:10px;
+}
+@-webkit-keyframes shrink {
+  0% {
+    transform: scaleY(1);
+  }
+  49% {
+    transform: scale(0.97, 0.97);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+@-moz-keyframes shrink {
+  0% {
+    transform: scaleY(1);
+  }
+  49% {
+    transform: scale(0.97, 0.97);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+@-o-keyframes shrink {
+  0% {
+    transform: scaleY(1);
+  }
+  49% {
+    transform: scale(0.97, 0.97);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.close{
+  float:right;
+  margin-right:10px;
+  margin-top:-10px;
+  font-size:35px;
+  cursor:pointer;
+}
+#col01, #col02{
+  width:46.5%;
+  float:left;
+}
+#col02{
+  margin-left:2%;
+}
+
+                         
+
+
+
+
+
+
+/* ----------------------------------------- */
+                       /* Responsive */
+
+@media screen and (max-width:520px){  
+  figure.snip{width:100%;top:130px;}
+  figcaption p{display:none;}
+  figure.snip h4{
+    font-size: 12px;
+    text-transform: none;
+  }
+  figure.snip img:hover{
+    -webkit-transform: scale(1.45,1.45);
+    transform: scale(1.45,1.45);
+  }
+  .modal{
+    overflow: auto; /* Enable scroll if needed */
+  }
+  .wrapper{
+    width:90%;
+  }
+  .container{display:none;}
+}
+
+@media screen and (max-width:380px){         /* ip7 */
+  .cart img{width:50px}
+  figure.snip{top:80px;}
+  .wrapper{
+    width:95%;
+  }
+  input{
+    width:94%;
+  }
+  #col01, #col02{
+    width:97%;
+  }
+  #col02{
+    margin-left:0;
+  }
+  
+}
+
+@media screen and (max-width:325px){          /* ip5 */
+  .container{
+    width:280px;
+  }
+  .bin span{
+    width: 70%;
+  }
+  #coupon, #end{
+    width:100%;
+  }
+  #end{width:90%;margin:10px}
+}
+.navbar-brand {
+  justify-content: space-around;
+  width:100%;
+  background-color:rgb(22, 22, 22);
+  font-family: 'PT Sans', sans-serif;
+}
+a:link, a:visited {
+  color:rgb(244, 245, 244);
+}
+nav.navbar a:hover {
+  color: rgb(178, 243, 238);
+}
+
+        #output {
+            clear: both;
+        }
+        
+        #checkoutdiv {
+            display: none;
+        }
+        
+        .footer {
+            background-color: darkgrey;
+            color:teal;
+        }
+
+        .container
+        {
+             background:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet";
+            
+                
+                <link rel="stylesheet" type="text/css" href="assets/css/demo.css">
+        }
+        * {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing:border-box;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    font-family: 'Exo', sans-serif;
+}
+
+
+.context {
+    width: 100%;
+    position:absolute;
+    top:10vh;
+    left:1ch;
+    
+}
+
+.context h1{
+    text-align:center;
+    color: #fff;
+    font-size: 50px;
+}
+
+
+.area{
+    background:#ffffff;  
+    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+    width: 100%;
+    height:200vh;
+    
+   
+}
+
+.circles{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(180, 199, 8, 0.835);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+    
+}
+
+.circles li:nth-child(1){
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+
+.circles li:nth-child(2){
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3){
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4){
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5){
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6){
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7){
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8){
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9){
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10){
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+
+
+@keyframes animate {
+
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+}
+        </style>
+    <nav class="navbar">
+      <div class="navbar-brand">
+            <a href="#" > <img src="logo - Copy.png" onclick="location.href='one.html'">  </a>   
+          <a href="#" class="navbar-item"></a> <a class="nav-link" href="home.html">Home</a>
+      <a href="#" class="navbar-item"></a> <a class="nav-link" href="menu3.html">Our Menu</a>
+          <a href="#" class="navbar-item"></a> <a class="nav-link" href="beverage.html">Beverages</a>
+          <a href="#" class="navbar-item"></a> <a class="nav-link" href="contact.html">Contact</a>
+
+      </div>
+   </nav>
+        <body>
+                
+                
+                
+                <div class="area" >
+                    
+                            <ul class="circles">
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    
+                            </ul>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    <!-- add jQuery library -->
+                <script src="https://www.w3schools.com/lib/w3.js"></script>  
+              <figure class="snip">                <!-- first -->
+                  <h4>Pepsi</h4>
+                  <div class="image">
+                    <img class="slide1" src="9556404001972_0001_1498548111226 (1).jpg" />
+                  
+                  </div>
+   
+                  <figcaption>
+                    <p>Chicken ham & pineapple with a double layer of mozzarella cheese.</p>    
+                    <div class="price">
+                      <s>RS 300.00</s><div class="real" data-price="210.00"> From RS 210.00</div>
+             
+                    </div>
+                  </figcaption>
+                  <a class="add-to-cart" href="#">Add to Cart</a>
+                </figure>
+                
+                <figure class="snip">                <!-- second -->
+                  <h4>Coca Cola</h4>
+                  <div class="image">
+                    <img class="slide2" src="coke_1.jpg" />
+                   
+                  </div>
+        
+                  <figcaption>
+                    <p>Chicken bacon, onions & green chillies with a double layer of mozzarella cheese.</p>    
+                    <div class="price">
+                      <s>Rs 300.00</s><div class="real" data-price="270.00">Small Rs 270.00</div>
+                 
+                    </div>
+                  </figcaption>
+                  <a class="add-to-cart" href="#">Add to Cart</a>
+                </figure>
+                
+                <figure class="snip">               <!-- third -->
+                  <h4>Fanta Portello</h4>
+                  <div class="image">
+                    <img class="slide3" src="fanta-portello-2l.jpg">
+                  </div>
+                 
+                  <figcaption>
+                    <p>Chicken bacon, onions & green chillies with a double layer of mozzarella cheese</p>    
+                    <div class="price">
+                      <s>Rs 300.00</s><div class="real" data-price="270.00">Small Rs 270.00</div>
+    
+                    </div>
+                  </figcaption>
+                  <a class="add-to-cart" href="#">Add to Cart</a>
+                </figure>
+                
+                <figure class="snip">               <!-- Fourth -->
+                  <h4>Fanta orange</h4>
+                  <div class="image">
+                    <img class="slide4" src="SGN0316.jpg" />
+                   
+                  </div>
+         
+                  <figcaption>
+                    <p>BBQ chicken accompanied by spicy jalapenos, onions and a double layer of mozzarella cheese</p>    
+                    <div class="price">
+                      <s>Rs 200.00</s><div class="real" data-price="170.00">Small Rs 170.00</div>
+                     
+                    </div>
+                  </figcaption>
+
+   
+                  
+
+                  <a class="add-to-cart" href="#">Add to Cart</a>
+                </figure>
+                     
+                <figure class="snip">               <!-- fifth -->
+                    <h4>Sprite</h4>
+                    <div class="image">
+                      <img class="slide5" src="IDShot_540x540.jpg">
+                    </div>
+                  
+                    <figcaption>
+                      <p>Chicken bacon, chicken sausage, beef pepperoni, pineapple, peppers, mushrooms and olives with a double layer of mozzarella cheese.</p>    
+                      <div class="price">
+                        <s>Rs 400.00</s><div class="real" data-price="370.00">Small Rs 270.00</div>
+                       
+                      </div>
+                    </figcaption>
+                    <a class="add-to-cart" href="#">Add to Cart</a>
+                  </figure>
+
+                  <figure class="snip">               <!-- sixth -->
+                    <h4>Yogurt Drink</h4>
+                    <div class="image">
+                      <img class="slide6" src="large_a91fdc1f-eeb6-4a99-843a-5230a99a3a6e.JPG" />
+                     
+                    </div>
+                  
+                    <figcaption>
+                      <p>Navy blue and white striped Bardot top, has short sleeves and shoulder straps</p>    
+                      <div class="price">
+                        <s>Rs 100.00</s><div class="real" data-price="80.00">Small Rs 80.00</div>
+                   
+                      </div>
+                    </figcaption>
+  
+     
+                    
+  
+                    <a class="add-to-cart" href="#">Add to Cart</a>
+                  </figure>
+                  <figure class="snip">               <!-- sixth -->
+                    <h4>Chocolate Drink</h4>
+                    <div class="image">
+                      <img class="slide6" src="051106023-01-frozen-hot-chocolate-recipe-main.jpg" />
+                     
+                    </div>
+                  
+                    <figcaption>
+                      <p>Navy blue and white striped Bardot top, has short sleeves and shoulder straps</p>    
+                      <div class="price">
+                        <s>Rs 500.00</s><div class="real" data-price="480.00">Small Rs 480.00</div>
+                   
+                      </div>
+                    </figcaption>
+  
+     
+                    
+  
+                    <a class="add-to-cart" href="#">Add to Cart</a>
+                  </figure>
+                 
+
+
+
+
+
+                  
+                <a class="cart" href="javascript:void(0);" title="Your Cart">
+                  <img src="shopping-icon.png" style="z-index: 100 ;position:relative"/>
+                  <span id="count-item" data-count="0">0 item</span>
+                </a>
+                <!-- --------------------Check out ---------------- -->
+                <div class="container">
+                  <div class="table">
+                  <span class="empty">Your cart is empty!</span>
+                  <img class="empty" src="empty-shopping-cart-icon (1).png" style="width:200px;"/>
+                  <div class="col1-name"></div>
+                  <div class="col2-price"></div>
+                  </div>
+                  <div class="bin"><span>Clear All</span><img id="bin" src="Actions-edit-delete-icon.png" style="width:40px" /></div>
+                  <div class="total">
+                    <div class="total-text">Total :</div>
+                    <div class="total-amount">Rs 0</div>
+                  </div>
+                  <div class="checkout" onclick="document.getElementById('id01').style.display='block'">Check Out</div>
+                  
+                </div>
+                
+                        <!-- -----------------Bill------------- -->
+               <div id="id01" class="modal">
+                <div class="wrapper">
+                  <div class="bill-content">
+                  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close">&times;</span>
+                  <h1 class="box-title">Checkout</h1>
+                  <div class="price-total">
+                    <span>PAY</span>
+                    <div class="pay-last">RS 0</div>
+                  </div>
+                  <form>
+                    
+                    <div class="form-text">
+                      <label>Card Number</label>
+                      <input name="card-number" type="text" required maxlength="16" minlength="16" >
+                    </div>
+                    <div class="form-text">
+                      <label>Card Verification Value</label>
+                      <input name="name" type="text" placeholder="CVV" required minlength="5" maxlength="5">
+                    </div>
+                    <div class="form-text" id="col01">
+                      <label>Expiry Date</label>
+                      <input name="card-number" type="text" placeholder="MM/YY" maxlength="4" required minlength="3">
+                    </div>
+                    <div class="form-text"  id="col02">
+                      <label>Coupon Code</label>
+                      <input name="card-number" type="text">
+                    </div>
+                    <button id="end"><a href="Thankyou.html">PAY NOW </button>
+                  </form>
+                    <button id="coupon">Get coupon code</button>
+                  </div>
+                </div>
+               </div>   
+<script>
+              //first: 
+var slideIndex = 1;         
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("slide1");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+
+//--------------------------------------------------------------------
+                                      //second: 
+var slideIndex2 = 1;         
+showDivs2(slideIndex2);
+
+function plusDivs2(n) {
+  showDivs2(slideIndex2 += n);
+}
+
+function showDivs2(n) {
+  var i;
+  var x = document.getElementsByClassName("slide2");
+  if (n > x.length) {slideIndex2 = 1}    
+  if (n < 1) {slideIndex2 = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex2-1].style.display = "block";  
+}
+//--------------------------------------------------------------------
+                                     //third: using w3.js library
+myslide = w3.slideshow(".slide3",0)
+//--------------------------------------------------------------------
+
+var slideIndex3 = 1;              //fourth
+showDivs3(slideIndex3);
+
+function plusDivs3(n) {
+  showDivs3(slideIndex3 += n);
+}
+
+function showDivs3(n) {
+  var i;
+  var x = document.getElementsByClassName("slide4");
+  if (n > x.length) {slideIndex3 = 1}    
+  if (n < 1) {slideIndex3 = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex3-1].style.display = "block";  
+}
+
+
+//====================================================================
+var bag =[];                    // initialize price array   
+                  // Animation:
+$(document).ready(function(){
+  $('.cart').click(function(){
+    $('.container').fadeToggle();
+  });
+  
+  $('.checkout').addClass('disabled');
+  $('#bin').addClass('disabled');
+});
+
+$(document).on('click','.add-to-cart',function(e){
+  e.preventDefault();
+  $('.empty').hide();
+  
+  //---------------------------------------------------------
+  if($(this).hasClass('disable')){    //disable mutiple clicks
+    return false;
+  }
+  $(document).find('.add-to-cart').addClass('disable');
+  //---------------------------------------------------------
+  
+  
+  
+  var parent = $(this).parents('.snip');
+  var src = parent.find('img').attr('src');
+  var cart = $(document).find('.cart');
+  
+  var posTop = parent.offset().top;    //return the coordinates of a element
+  var posLeft = parent.offset().left;
+ 
+  $('<img />', { 
+   class: 'animation-fly',
+   src: src
+}).appendTo('body').css({
+    'top': posTop,      
+    'left': parseInt(posLeft)
+  }); 
+  
+  setTimeout(function(){
+    $(document).find('.animation-fly').css({
+      'top': cart.offset().top,
+      'left': cart.offset().left
+    });
+    setTimeout(function(){
+      $(document).find('.animation-fly').remove(); //after fly
+      var quantity = parseInt(cart.find('#count-item').data('count'))+1;
+//       if(quantity<2){
+//         cart.find('#count-item').text(quantity + ' item').data('count', quantity);
+//       }else{
+//         cart.find('#count-item').text(quantity + ' items').data('count', quantity);
+//       }
+      cart.find('#count-item').text(quantity + (quantity<2 ?' item':' items')).data('count', quantity);
+      
+                             //add item to cart
+    var name = parent.find('h4').text();
+    var price = parent.find('.real').text();
+    var txt3 = document.createElement("hr");
+    var txt4 = document.createElement("hr");
+       
+    $('.col1-name').append(name,txt3);
+    $('.col2-price').append(price,txt4);
+    $('.checkout').addClass('add-animation');
+    $('.checkout').removeClass('disabled');
+    
+    $('#bin').addClass('add-animation2');
+    $('#bin').removeClass('disabled');
+    
+                            //find total amount
+    var price2 = parseFloat(parent.find('.real').data('price')); //get "data-price" from <div class="real">
+    bag.push(price2);                                            
+    var total = 0;
+    $(".total-amount").text(function(){
+     for(var i in bag){
+      total += bag[i];    //calculate sum of all numbers in the array 
+     }
+     var last = "$ " + total.toFixed(2);
+     $('.pay-last').text(last);
+     return last;   // return total only -> bug.
+     
+    });
+      
+      $(document).find('.add-to-cart').removeClass('disable');
+    },1000);
+  },500);
+  
+  $('.bin').on('click',function(){     
+   $('.col1-name').empty();
+   $('.col2-price').empty();
+   $('.empty').show();
+   $('.checkout').removeClass('add-animation');
+   $('#bin').removeClass('add-animation2');
+   $('.checkout').addClass('disabled');
+   $('#bin').addClass('disabled');
+   bag = [];
+   $('.total-amount').add('.pay-last').text("$ " + bag.length);
+   cart.find('#count-item').text(0 + ' item').data('count', 0);
+ });
+  
+});
+
+
+
+
+//------------------BILL----------------------
+
+$(document).ready(function(){
+  $('#coupon').on('click',function(){
+    alert("minhquanghust.blogspot.com Coupon Code:" + '\n' + "25% off: 0511Q-1601CV" +'\n' + "15% off: 0511Q-1701NA" + '\n' + "10% off: 0511Q-1901QA")
+  });
+})
+
+    </script>
+        </body>
+        </html>

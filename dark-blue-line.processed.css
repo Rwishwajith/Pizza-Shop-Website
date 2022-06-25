@@ -1,0 +1,60 @@
+/*now discription of the first dark-blue line*/
+
+.dark-blue-line {
+  background-color: #001b42;
+  margin-top: 0px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 35px;
+}
+
+.centralisation {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  width: 1200px;
+}
+
+.services {
+  font-family: 'Lato', 'Oswald', Verdana;
+  padding: 1px;
+  margin: 7px 5px;
+  color: #44a3f5;
+  vertical-align: middle;
+}
+
+.services:hover {
+  color: White;
+}
+
+.content {
+  left-padding: 6px;
+  line-height: 25px;
+  vertical-align: middle;
+  color: #44a3f5;
+  text-decoration: none;
+}
+
+.content:hover {
+  color: White;
+}
+
+.accomodations .fa,
+.restarants .fa,
+.rental_cars .fa,
+.flights .fa {
+  vertical-align: middle;
+}
+
+.fa-meetup,
+.fa-plane {
+  font-size: 23px;
+}
+
+.fa-shopping-basket,
+.fa-car {
+  font-size: 18px;
+}

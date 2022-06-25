@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Selection</title>
+    <link rel="icon" type="image/ico" href="favicon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis|PT+Sans" rel="stylesheet">
+
+</head>
+     
+   <style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+/*Page styles*/
+html { height: 100%; }
+
+body {
+  height: 100%;
+  margin: 0;
+  background: #363636;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  background-image: url("linkedin_banner_image_1.png")
+}
+
+.boxes {
+  margin: auto;
+  padding: 50px;
+  background: #484848;
+}
+
+/*Checkboxes styles*/
+input[type="checkbox"] { display: none; }
+
+input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  font: 14px/20px 'Open Sans', Arial, sans-serif;
+  color: #ddd;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+
+input[type="checkbox"] + label:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #6cc0e5;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+input[type="checkbox"]:checked + label:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+input[type="radio"] { display: none; }
+
+input[type="radio"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  font: 14px/20px 'Open Sans', Arial, sans-serif;
+  color: #ddd;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input[type="radio"] + label:last-child { margin-bottom: 0; }
+
+input[type="radio"] + label:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #6cc0e5;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+input[type="radio"]:checked + label:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.image
+{
+  background-color: #363636;
+  background-image: url("instagram-logo.png");
+  width: 60px;
+  height:60px;
+  position: relative;
+  float: left;
+ 
+}
+
+
+.basicBox, .swiggleBox, .checkBox {
+  width: 130px;
+  height: 65px;
+  margin: 15px auto;
+  color: rgb(19, 18, 18);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.15rem;
+  line-height: 65px;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+ 
+  }
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+svg rect, svg path, svg polyline {
+  fill: none;
+  stroke:teal;
+  stroke-width: 1;
+}
+
+.swiggleBox:hover svg path {
+  stroke: rgb(17, 17, 17);
+}
+
+
+/* Swiggle Box */
+svg path {
+  stroke-dasharray: 265, 0;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+}
+.swiggleBox:hover svg path {
+  stroke-width: 50;
+  stroke-dasharray: 0, 350;
+  stroke-dashoffset: 20;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+}
+
+
+/* Check Mark Effect */
+.box, .checkMark {
+  opacity: 0;
+}
+.checkBox:hover .box {
+  -webkit-animation: boxDisplay 0.2s forwards;
+  -moz-animation: boxDisplay 0.2s forwards;
+  -ms-animation: boxDisplay 0.2s forwards;
+  -o-animation: boxDisplay 0.2s forwards;
+  animation: boxDisplay 0.2s forwards;
+  -webkit-animation-delay: 0.65s;
+  -moz-animation-delay: 0.65s;
+  -ms-animation-delay: 0.65s;
+  -o-animation-delay: 0.65s;
+  animation-delay: 0.65s;
+}
+.checkBox:hover .checkMark {
+  -webkit-animation: checkDisplay 0.2s forwards;
+  -moz-animation: checkDisplay 0.2s forwards;
+  -ms-animation: checkDisplay 0.2s forwards;
+  -o-animation: checkDisplay 0.2s forwards;
+  animation: checkDisplay 0.2s forwards;
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  -ms-animation-delay: 1s;
+  -o-animation-delay: 1s;
+  animation-delay: 1s;
+}
+/* Check Box Display */
+@-webkit-keyframes boxDisplay {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes boxDisplay {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-ms-keyframes boxDisplay {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes boxDisplay {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes boxDisplay {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+/* Check Mark Display */
+@-webkit-keyframes checkDisplay {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes checkDisplay {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-ms-keyframes checkDisplay {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes checkDisplay {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes checkDisplay {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+       </style>
+
+
+
+<body>
+    <div class="boxes">
+        <input type="checkbox" id="box-10" name="check3" onclick="onlyfour(this)" required>
+        <label for="box-10">Personal</label>
+      
+        <input type="checkbox" id="box-11" name="check3" onclick="onlyfour(this)" required>
+        <label for="box-11">Medium</label>
+      
+        <input type="checkbox" id="box-12" name="check3" onclick="onlyfour(this)" required>
+        <label for="box-12">Large</label>
+      </div>
+
+ <div class="boxes">
+  <input type="checkbox" id="box-1" name="check" onclick="onlyOne(this)">
+  <label for="box-1">Thin Crust</label>
+
+  <input type="checkbox" id="box-2" name="check" onclick="onlyOne(this)">
+  <label for="box-2"> Medium Crust </label>
+
+  <input type="checkbox" id="box-3" name="check" onclick="onlyOne(this)">
+  <label for="box-3">Thicker Crust</label>
+</div>
+
+<div class="boxes">
+  <input type="checkbox" id="box-4" name="check1" onclick="onlytwo(this)" >
+  <label for="box-4">No Cheese</label>
+
+  <input type="checkbox" id="box-5" name="check1" onclick="onlytwo(this)">
+  <label for="box-5">Medium Cheese </label>
+
+  <input type="checkbox" id="box-6" name="check1" onclick="onlytwo(this)">
+  <label for="box-6">Extra Cheese</label>
+</div>
+<div class="boxes">
+  <input type="checkbox" id="box-7" name="check2">
+
+  <label for="box-7"> Bell Pepper </label>
+
+
+  <input type="checkbox" id="box-8" name="check2">
+
+  <label for="box-8">Pepper</label>
+ 
+
+  <input type="checkbox" id="box-9" name="check2">
+ 
+  <label for="box-9"> Onion </label>
+  
+  
+  <input type="checkbox" id="box-13" name="check2">
+ 
+  <label for="box-13"> Pineapple </label>
+  <input type="checkbox" id="box-14" name="check2">
+ 
+<label for="box-14">Paprika</label>
+
+<input type="checkbox" id="box-15" name="check2">
+ 
+<label for="box-15"> Fresh Tomatoes </label>
+<input type="checkbox" id="box-16" name="check2">
+<label for="box-16"> Catch Up </label>
+<input type="checkbox" id="box-17" name="check2">
+<label for="box-17" >  Golden Corn </label>
+</div>
+
+
+
+<div class="swiggleBox"  type="button" onclick="location.href='orderdinein.html'" style="background-color:teal">
+  <label  > Order</label>
+  <svg width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg" > 
+    <path d="M0.6,0.5c0,5.4,0,61.5,0,61.5s4.5,5.4,9.9,0c5.4-5.4,9.9,0,9.9,0s4.5,5.4,9.9,0c5.4-5.4,9.9,0,9.9,0
+	s4.5,5.4,9.9,0c5.4-5.4,9.9,0,9.9,0s4.5,5.4,9.9,0c5.4-5.4,9.9,0,9.9,0s4.5,5.4,9.9,0c5.4-5.4,9.9,0,9.9,0s4.5,5.4,9.9,0
+  c5.4-5.4,9.9,0,9.9,0s4.5,5.4,9.9,0c0,0,0-56.1,0-61.5H0.6z"/>
+ 
+  </svg>
+
+<script>
+
+
+function onlyOne(checkbox) {
+    var checkboxes = document.getElementsByName('check')
+    checkboxes.forEach((item) => {
+        if (item !== checkbox) item.checked = false
+    })
+}
+function onlytwo(checkbox) {
+    var checkboxes = document.getElementsByName('check1')
+    checkboxes.forEach((item) => {
+        if (item !== checkbox) item.checked = false
+    })
+}
+function onlythree(checkbox) {
+    var checkboxes = document.getElementsByName('check2')
+    checkboxes.forEach((item) => {
+        if (item !== checkbox) item.checked = false
+    })
+}
+function onlyfour(checkbox) {
+    var checkboxes = document.getElementsByName('check3')
+    checkboxes.forEach((item) => {
+        if (item !== checkbox) item.checked = false
+    })
+}
+</script>
+
+
+
+
+</body>
+
+</html>
+    

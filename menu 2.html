@@ -1,0 +1,292 @@
+<html> 
+  <head>
+    <title> Flexbox expierence </title>
+    <script src="https://use.fontawesome.com/2f3047ef18.js"></script>
+    <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+    <script src="header.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://s-ec.bstatic.com/static/fonts/booking-iconset/dc2a9b8005a0064afa4f3068a145fbfb6597b828.woff" />
+    <link type="text/css" rel="stylesheet" href="scss/main.processed.css"/>
+    <link type="text/css" rel="stylesheet" href="scss/dark-blue-line.processed.css"/>
+    <link type="text/css" rel="stylesheet" href="scss/light-blue-line/general.processed.css"/>
+    <link type="text/css" rel="stylesheet" href="scss/light-blue-line/middle-menu-choice-general.processed.css"/>
+    <link type="text/css" rel="stylesheet" href="scss/light-blue-line/middle-support.processed.css"/>
+    <link type="text/css" rel="stylesheet" href="scss/light-blue-line/middle-currencies.processed.css"/>
+    <link type="text/css" rel="stylesheet" href="scss/light-blue-line/middle-recently-seen-hotels.processed.css"/>
+    
+  </head>
+  <body>
+    <div class='top'>
+      <div class='dark-blue-line'>
+        <div class='centralisation'>
+          <div class='services accomodations'>
+            <i class="fa fa-meetup" aria-hidden="true"></i>
+            <a class="content">Accomodations</a>
+          </div>
+          <div class='services restarants'>
+           <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+           <a class="content" href='https://www.opentable.com/start/home'>Restarants</a>
+          </div>
+         <div class='services rental_cars'>
+           <i class="fa fa-car" aria-hidden="true"></i>
+           <a class="content" href='http://www.rentalcars.com/Home.do?affiliateCode=booking-com&adplat=footer&preflang=en'>Rental Cars</a>
+          </div>
+         <div class='services flights'>
+           <i class="fa fa-plane" aria-hidden="true"></i>
+           <a class="content" href='http://booking.kayak.com/'>Flights</a>
+          </div> 
+        </div>
+      </div>
+      <div class='light-blue-line'>
+        <div class='centralisation_second'>
+          <div class='booking_com'>
+            Booking<span>.com</span>
+          </div>
+          <div class='useful_einstellungen'>
+            <div class='help'>
+              <div class='help-us'>
+                <i class="fa fa-hand-o-left" aria-hidden="true"></i> <!-- onmouseenter="someFunction()" -->
+                <div class='help-not-visible'>
+                  <span>Get customer servics help hier!</span>
+                </div>
+                <div id='white_romb'>
+                </div>
+              </div>
+            </div>
+            <div class='currency'>
+             <a class='currency-us' onclick='currencyChoice()'>
+               <i class="fa fa-eur" aria-hidden="true"></i>
+               <div class='your-currency'>
+                <span>Choose your currency</span>
+               </div>
+                <div id='currency-choice'>
+                 <span class='black_text_top'>Top currencies</span>
+                 <div class="one-currency">
+                   <i class="fa fa-eur black_text" aria-hidden="true" ></i>
+                   <span>Euro</span>
+                 </div>
+                 <div class="one-currency">
+                   <i class="fa fa-rub black_text" aria-hidden="true" ></i>
+                   <span>Russian Rouble</span>
+                 </div>
+                 <div class="one-currency">
+                   <i class="fa fa-usd black_text" aria-hidden="true" ></i>
+                   <span>U.S.Dollar</span>
+                 </div>
+                 <div class="one-currency">
+                   <i class="fa fa-jpy black_text" aria-hidden="true" ></i> 
+                   <span>Japanes Yen</span>
+                 </div>
+               </div>
+              </a>
+            </div>  
+            <div class='language'>
+              <a class='language-us'>
+                <i class="fa fa-stop" aria-hidden="true"></i>
+                <div class='your-language'>
+                  <span>Choose your language</span>
+                </div>               
+              </a>
+            </div>
+            
+            <div class='recently_seen' onclick='showRecentAccomodatios()'><!--working hier-->
+              <span>Resently seen</span>
+              <div class='your-recently-seen'>
+                   <span>Quickly find places you recently viewed</span>
+              </div> 
+              <div id='last-seen-accomodations'>
+                <div class="scroll-part">
+                  <div class='hotels'>
+                     <div class='hotel-picture' >
+                       <img src='https://t-ec.bstatic.com/images/hotel/square60/700/70052660.jpg'/>
+                     </div>
+                     <div class='text-dicription'>
+                      <div class='first-line'>
+                        <div class='closing-icon' title='Remove from recently viewed offers'>
+                          <i class="fa fa-times-circle" aria-hidden="true"></i>
+                        </div>
+                        <div class='hotel-name' title='Villa Gardena'>Apartments Villa Gardena - Gardenahotels <span> &#x2605; &#x2605; &#x2605;</span> </div>
+                      </div>
+                      <div class='address'>tr. Pitla Cir 6-8, 39048 Selva di Val Gardena, Italy</div>
+                      <div class='score'>Score from <strong>28</strong>  reviews: <strong> Excellent 8.8</strong></div>
+                      <div class='availability'><strong> Already sold out on our site!</strong>  : Jan 29 to Feb 7</div>
+                      <div class='last-line'>
+                        <div class='last-view'> Last viewed: today</div>
+                        <div class='price'>from <strong>185 &#8364;</strong></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class='hotels'>
+                    <div class='hotel-picture' >
+                       <img src='https://t-ec.bstatic.com/images/hotel/square60/769/76932605.jpg'/>
+                     </div>
+                     <div class='text-dicription'>
+                      <div class='first-line'>
+                        <div class='closing-icon'>
+                          <i class="fa fa-times-circle" aria-hidden="true"></i>
+                        </div>
+                        <div class='hotel-name'>Apartments Villa Gardena - Gardenahotels <span> &#x2605; &#x2605; &#x2605;</span></div>
+                      </div>
+                      <div class='address'>tr. Pitla Cir 6-8, 39048 Selva di Val Gardena, Italy</div>
+                      <div class='score'>Score from <strong>28</strong>  reviews: <strong> Excellent 8.8</strong></div>
+                      <div class='availability'><strong> Already sold out on our site!</strong>  : Jan 29 to Feb 7</div>
+                      <div class='last-line'>
+                        <div class='last-view'> Last viewed: today</div>
+                        <div class='price'>from<strong>185 &#8364;</strong></div>
+                      </div>
+                    </div>
+                    
+                    <!--<img class='hotel-picture' src='https://s-ec.bstatic.com/images/hotel/square60/434/43456307.jpg'/>
+                    <div class='text-dicription'></div>-->
+                  </div>
+                  <div class='hotels'>
+                    <img class='hotel-picture' src='https://s-ec.bstatic.com/images/hotel/square60/532/53204889.jpg'/>
+                    <div class='text-dicription'>
+                      <div class='first-line'>
+                        <div class='closing-icon'>
+                          <i class="fa fa-times-circle" aria-hidden="true"></i>
+                        </div>
+                        <div class='hotel-name'>Apartments Villa Gardena - Gardenahotels <span> &#x2605; &#x2605; &#x2605;</span></div>
+                      </div>
+                      <div class='address'>tr. Pitla Cir 6-8, 39048 Selva di Val Gardena, Italy</div>
+                      <div class='score'>Score from <strong>28</strong>  reviews: <strong> Excellent 8.8</strong></div>
+                      <div class='availability'><strong> Already sold out on our site!</strong>  : Jan 29 to Feb 7</div>
+                      <div class='last-line'>
+                        <div class='last-view'> Last viewed: today</div>
+                        <div class='price'>from<strong>185 &#8364;</strong></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class='static-part'>zzzzzzzzzzzzzzzzzzzzz</div>
+              </div>
+              <div id='white_romb_resently_seen'></div>
+            </div>
+          
+            <div class='my_list'>
+                <span>My list</span>
+                <div class='my_list_now'>
+                 <span> Save and share your favourite places!</span>
+                </div>
+            </div>
+          
+            <div class='invite_earn'>
+              <a href='https://secure.booking.com/myreferrals.en-gb.html?aid=304142;label=gen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmaDuIAQGYATG4AQjIAQzYAQHoAQH4AQKSAgF5qAID;sid=68af614bfcb7cd2816805203525fef4c;rafftl=1'> Invaite and earn</a>
+            </div>
+            <div class='travel_guardes'>Travel</div>
+          </div>
+         
+         <div class='buttons'>
+            <button type="button" class='button_design list_your_property'>
+              <a href='https://join.booking.com/?lang=en-us&utm_source=topbar&utm_medium=frontend&aid=1194661'>List your property</a>
+            </button> 
+            <button type="button" class='button_design register'>
+              <a>Register</a>
+            </button>
+            
+           
+            <button type="button" class='button_design sign_in'>Sign in</button>
+         </div>
+        </div>
+      </div>
+    </div>
+  <div class="register-container">
+              <div class="shadow"></div>
+              <div class="register-menu">
+                <div class="member-already">
+                  <div class="sign-in">Sign in</div>
+                  <div class="register-now">Register</div>
+                </div>
+                <div class="choice-sign-in">
+                  <div class="getting-info">
+                    <div class="email">
+                      <p>Email address</p>
+                      <input type="text" class="email-data"></input>
+                    </div>
+                    <div class="password">
+                      <p>Booking password</p>
+                      <input type="text" class="password-data"></input>
+                      <p id="forgot-password">Forgot your password?</p>
+                    </div>
+                  </div>
+                  <div class="ways-to-sign-in">
+                    <div class="sign-in-as-member">
+                       <input type="submit" value="Sign in" class="submission"></input>
+                    </div>
+                    <div class="option"><hr></hr><a> or sign in with 1 click</a><hr></hr></div>
+                    <div class="sign-in-througn-socialnets">
+                      <div id="facebook">
+                        <a href="https://www.facebook.com/v2.9/dialog/oauth?client_id=210068525731476&redirect_uri=https%3A%2F%2Fsecure.booking.com%2Flogin.html%3Fop%3Dfb_login%26role%3Dapp%26protocol%3Dhttps%26final_url%3Dhttps%253A%252F%252Fwww.booking.com%252Findex.en-gb.html%253Flabel%253Dgen173nr-1DCAEoggJCAlhYSDNiBW5vcmVmaDuIAQGYAS64AQbIAQzYAQPoAQGSAgF5qAID%253Bsid%253D9439824d2b8963d462deca37d9e524a2%253Bsb_price_type%253Dtotal%2526&scope=email&display=popup&state=oxNOzdCv2Cp6a64tIMALaMh2URaeKVhOzV6dASw3VEPSnPe_72I5UHGrPLAKZSflR8UDXYfgUFeC-ojYVoZXyP_JnluFyYe-lZcUjI1AunQ7UWtjXl-wF0Xelx2GoNbPEVWCqex_vUKd-cAh94KsvgvSvfgMvTeVnPkegubc_EgEqf3wgf_DorNk05M&response_type=code">Sign in with Facebook</a>
+                      </div>
+                      <div id="google">
+                        <a href="https://accounts.google.com/signin/oauth/oauthchooseaccount?client_id=901905703382-m88jn1h9ll89odkt6t5muc6h7ep83rlh.apps.googleusercontent.com&as=-252a7adf35f8bc38&destination=https%3A%2F%2Fsecure.booking.com&approval_state=!ChRQVVZCTVM1Vzl3RUE0Z0lTUnNraBIfMHpSWGJHSUNPWnNRWUFOYVJfLXV5LTFYMnpiNzF4VQ%E2%88%99ADiIGyEAAAAAWXoS427sXWLZYjYthiVrsKfSRf3eQz6S&xsrfsig=AHgIfE8CW3snR97mtgskh-1Qy83IpCHgww&flowName=GeneralOAuthFlow">Sign in with Google</a>
+                      </div>
+                    </div>
+                  </div>
+                  <hr></hr>
+                  <div class="ad-info">
+                    <p>Make changes to a booking with your <span>confirmation number and PIN</span></p>                       
+                    <p>By logging into an account you are agreeing with our <span>Terms and Conditions</span> and <span>Privacy Statement</span></p>
+                  </div>
+                </div>
+            <div class="choice-register">
+                   <div class="getting-info">
+                    <div class="email">
+                      <p>Email address</p>
+                      <input type="text" class="email-data"></input>
+                    </div>
+                    <div class="password">
+                      <p>Create password</p>
+                      <input type="text" class="password-data"></input>
+                      
+                    </div>
+                  </div>
+                  <div class="ways-to-sign-in">
+                    <div class="sign-in-as-member">
+                       <input type="submit" value="Get started" class="submission"></input>
+                    </div>
+                    <div class="option"><hr></hr><a> or </a><hr></hr></div>
+                    <div class="sign-in-througn-socialnets">
+                      <div id="facebook">
+                        <a href="https://www.facebook.com/v2.9/dialog/oauth?client_id=210068525731476&redirect_uri=https%3A%2F%2Fsecure.booking.com%2Flogin.html%3Fop%3Dfb_login%26role%3Dapp%26protocol%3Dhttps%26final_url%3Dhttps%253A%252F%252Fwww.booking.com%252Findex.en-gb.html%253Flabel%253Dgen173nr-1DCAEoggJCAlhYSDNiBW5vcmVmaDuIAQGYAS64AQbIAQzYAQPoAQGSAgF5qAID%253Bsid%253D9439824d2b8963d462deca37d9e524a2%253Bsb_price_type%253Dtotal%2526&scope=email&display=popup&state=oxNOzdCv2Cp6a64tIMALaMh2URaeKVhOzV6dASw3VEPSnPe_72I5UHGrPLAKZSflR8UDXYfgUFeC-ojYVoZXyP_JnluFyYe-lZcUjI1AunQ7UWtjXl-wF0Xelx2GoNbPEVWCqex_vUKd-cAh94KsvgvSvfgMvTeVnPkegubc_EgEqf3wgf_DorNk05M&response_type=code">Sign up with Facebook</a>
+                      </div>
+                      <div id="google">
+                        <a href="https://accounts.google.com/signin/oauth/oauthchooseaccount?client_id=901905703382-m88jn1h9ll89odkt6t5muc6h7ep83rlh.apps.googleusercontent.com&as=-252a7adf35f8bc38&destination=https%3A%2F%2Fsecure.booking.com&approval_state=!ChRQVVZCTVM1Vzl3RUE0Z0lTUnNraBIfMHpSWGJHSUNPWnNRWUFOYVJfLXV5LTFYMnpiNzF4VQ%E2%88%99ADiIGyEAAAAAWXoS427sXWLZYjYthiVrsKfSRf3eQz6S&xsrfsig=AHgIfE8CW3snR97mtgskh-1Qy83IpCHgww&flowName=GeneralOAuthFlow">Sign up with Google</a>
+                      </div>
+                    </div>
+                  </div>
+                  <hr></hr>
+                  <div class="ad-info">
+                    <p>Interested in <span> Booking.com for Business?</span></p>
+                    <p>Make changes to a booking with your <span>confirmation number and PIN</span></p>                       
+                    <p>By logging into an account you are agreeing with our <span>Terms and Conditions</span> and <span>Privacy Statement</span></p>
+                  </div>
+                 </div>
+               </div>
+            </div>
+   <div id='support-ways'>
+                  <ul type='none'>
+                    <li>
+                      <i class="fa fa-comment-o" aria-hidden="true"></i>
+                      <span>Give website Feedback</span> 
+                    </li>
+                    <li>
+                      <i class="fa fa-question" aria-hidden="true"></i>
+                      <span>Customer service support</span>
+                    </li>
+                    <li>
+                      <i class="fa fa-plus" aria-hidden="true"></i>
+                      <span>List your property</span>
+                    </li>
+                    <li>
+                      <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                      <span>Partner dashboard</span>
+                    </li>
+                  </ul>
+                </div>
+
+
+  </body>
+</html>

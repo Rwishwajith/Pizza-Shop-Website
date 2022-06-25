@@ -1,0 +1,296 @@
+<html>
+    <head>
+            <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Pizza Paradise</title>
+    <link rel="icon" type="image/ico" href="favicon.png">
+    
+    </head>
+    <style>
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+h2 {
+  font-family: 'Open Sans Condensed', sans-serif;
+  line-height: 200px;
+  font-size: 46px;
+  color: #fff;
+}
+
+.wrapper {
+  width: 1000px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  left: 50%;
+  position: relative;
+  transform: translateX(-50%);
+  top: 200px;
+  background-color:transparent;
+}
+
+.wrapper .first {
+  width: 500px;
+  height: 200px;
+  background-color: rgba(26, 188, 156,1.0);
+  text-align: center;
+  transition: all 300ms;
+  cursor:-webkit-grab;
+  background-image:url("https://www.scienceabc.com/wp-content/uploads/2015/08/Pizza-Box.jpg" )
+ 
+}
+
+.wrapper .second {
+  width: 500px;
+  height: 200px;
+  background-color: rgba(52, 152, 219,1.0);
+  text-align: center;
+  transition: all 300ms;
+  cursor: pointer;
+  background-image:url("https://img.grouponcdn.com/deal/nhjcKdKnuawjKX427U9F/GK-2048x1229/v1/c700x420.jpg")
+}
+
+
+.lil {
+  transform: scale(0.7, 0.7);
+  pointer-events: none;
+}
+
+.change {
+  background-color: #222;
+  opacity: .6
+}
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    font-family: 'Exo', sans-serif;
+}
+
+
+.context {
+    width: 100%;
+    position:absolute;
+    top:10vh;
+    left:1ch;
+    
+}
+
+.context h1{
+    text-align:center;
+    color: #fff;
+    font-size: 50px;
+}
+
+
+.area{
+    background: #06071b;  
+    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+    width: 100%;
+    height:100vh;
+    
+   
+}
+
+.circles{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+    
+}
+
+.circles li:nth-child(1){
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+
+.circles li:nth-child(2){
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3){
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4){
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5){
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6){
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7){
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8){
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9){
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10){
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+
+
+@keyframes animate {
+
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+}
+        </style>
+
+
+        <body>
+
+              
+                <div class="context">
+                       
+                        <h1 style="letter-spacing:20px;text-align:center">PIZZA <span class="teal-text">  <img src="logo.png" alt="Go More" style="float:inherit;width:120px;height:120px;"> PARADISE </span> </h1>
+                    </div>
+                
+                
+                <div class="area" >
+                    
+                            <ul class="circles">
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    
+                            </ul>
+                            <br>
+                            <br>
+                            <br>
+                            <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                            <div class="wrapper">
+                              <div class="first" >
+                                <h2 type="button" onclick="location.href='home.html'" >Home Delivery</h2>
+                               
+                                <div class="over-first"></div>
+                              </div>
+                              <div class="second">
+                                <h2 type="button" onclick="location.href='Another.html'">Dine In | Take Away</h2>
+                               
+                                <div class="over-second"></div>
+                              
+                              </div>
+                    </div >
+                      
+        
+                   
+               
+              
+
+<script>
+$(document).ready(function() {
+  
+  $('.first').click(function() {
+    
+    $('.second').toggleClass('lil change');
+    $('.third').toggleClass('lil change');
+    $('.fourth').toggleClass('lil change');
+    $('.fifth').toggleClass('lil change');
+    $('.sixth').toggleClass('lil change');
+    
+  });
+ 
+  $('.second').click(function() {
+    
+    $('.first').toggleClass('lil change');
+    $('.third').toggleClass('lil change');
+    $('.fourth').toggleClass('lil change');
+    $('.fifth').toggleClass('lil change');
+    $('.sixth').toggleClass('lil change');
+    
+  });  
+
+});
+    </script>
+
+
+        </body>
+
+</html>

@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Pizza Shop | Menu</title>
+    <link rel="icon" type="image/ico" href="19097-NS60YF.jpg">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+   
+    </head>
+    <style>
+      body {
+  margin: 0;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-family: "Lato", sans-serif;
+  user-select: none;
+  --light-grey: rgb(245, 245, 245);
+  --green: #14b251;
+  --shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+.containers {
+  display: flex;
+  flex-direction: row;
+  background-color: #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.info-container {
+  padding: 20px 0;
+  width: 450px;
+  position: relative;
+  & .padding {
+    padding: 0 20px;
+  }
+  .title {
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 5px;
+  }
+  .price {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    p {
+      display: flex;
+      align-items: flex-start;
+      margin: 0;
+    }
+    span {
+      font-size: 0.65em;
+    }
+  }
+  p.label-price {
+    margin-right: 10px;
+  }
+  p.old-price {
+    color: #aaa;
+    position: relative;
+    margin-right: 10px;
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      bottom: 40%;
+      background-color: red;
+    }
+  }
+  .new-price {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+.order-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.spinner {
+  display: flex;
+  overflow: hidden;
+  border-radius: 30px;
+  align-items: stretch;
+  font-size: 20px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  margin-right: 20px;
+}
+.spinner-button {
+  padding: 16px;
+  background-color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  user-select: none;
+  &:hover{
+    background-color: var(--light-grey);
+  }
+}
+.spinner-value {
+  margin: 0 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  width: 40px;
+}
+.basket-button {
+  background-color: var(--green);
+  color: white;
+  padding: 16px 50px;
+  border-radius: 40px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  &.disabled{
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+.size-selector{
+  margin-bottom: 20px;
+}
+.nice-select {
+  width: 200px;
+  outline: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  .fas{
+    position: absolute;
+    right: 20px;
+    font-size: 20px;
+  }
+  .current {
+    width: 100%;
+    display: block;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 20px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    cursor: pointer;  
+  }
+  .list {
+    display: none;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    box-shadow: var(--shadow);
+    border-radius: 30px;
+    overflow: hidden;
+    li {
+      list-style-type: none;
+      padding: 20px 40px;
+      border-bottom: 1px solid #ccc;
+      cursor: pointer;
+      &:last-child {
+        border-bottom: none;
+      }
+      &:hover {
+        background-color: var(--light-grey);
+      }
+    }
+  }
+  &.open {
+    .current {
+      opacity: 0;
+    }
+    .fas{
+      display: none;
+    }
+    .list {
+      display: block;
+    }
+  }
+}
+.pagination{
+  display: flex;
+  justify-content: center;
+}
+.page{
+  --size: 12px;
+  width: var(--size);
+  height: var(--size);
+  background-color: #ccc;
+  border-radius: var(--size);
+  margin-right: 6px;
+  cursor: pointer;
+  &:last-child{
+    margin-right: 0;
+  }
+  &.active, &:hover{
+    background-color: var(--green);
+  }
+  &.active{
+    cursor: default;
+  }
+}
+.ingridients{
+  overflow: hidden;
+}
+.blocks{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  transition: transform 0.5s cubic-bezier(0.555, -0.465, 0.355, 1.285);
+}
+.block{
+  width: 75%;
+  flex: 0 0 auto;
+  background-color: white;
+  margin-right: 20px;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.main, .secondary{
+  display: flex;
+}
+.main{
+  margin-bottom: 16px;
+}
+.secondary{
+  align-items: baseline;
+  p{
+    margin: 0;
+    margin-right: 10px;
+  }
+}
+.icon{
+  display: inline-block;
+  margin-right: 10px;
+}
+.disabled{
+  color: #eee;
+}
+.shopping-cart{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: #aaa;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  &.hidden{
+    opacity: 0;
+  }
+}
+.toast{
+  --size: 28px;
+  background-color: red;
+  position: absolute;
+  top: -10px;
+  right: -10%;
+  padding: 0 8px;
+  box-sizing: border-box;
+  display: flex;
+  min-width: var(--size);
+  height: var(--size);
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--size);
+}
+
+.pulse{
+  animation: pulse 0.75s ease-in-out;
+}
+
+@keyframes pulse{
+  0%, 100%{
+    transform: scale(1,1);
+  }
+  35%{
+    transform: scale(1.2, 1.2);
+  }
+}
+        * {
+  box-sizing: border-box;
+}
+p {
+  font-size: 1em;
+}
+ 
+.navbar-brand {
+  justify-content: space-around;
+  width:100%;
+  background-color:rgb(22, 22, 22);
+  font-family: 'PT Sans', sans-serif;
+}
+a:link, a:visited {
+  color:rgb(244, 245, 244);
+}
+nav.navbar a:hover {
+  color: rgb(178, 243, 238);
+}
+
+    * {
+  box-sizing: border-box
+}
+html {
+  height: 100%
+}
+body {
+	font: 11px "Open Sans", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	margin: auto;
+  display: flex;
+  flex-flow: column nowrap;
+
+}
+ul {
+  list-style: none
+}
+a {
+  text-decoration: none
+}
+
+.flex-rw {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+main {
+  flex: 1 1 auto; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 10em "Oswald", sans-serif;
+  color: rgb(155,155,155);
+  line-height: 1
+}
+footer {
+  background: rgb(55,55,55);
+  margin-top: auto;
+  width: 100%
+}
+.footer-list-top {
+  width: 33.333%
+}
+.footer-list-top > li {
+  text-align: center;
+  padding-bottom: 10px
+}
+.footer-list-header {
+  padding: 10px 0 5px 0;
+  color: #fff;
+  font: 2.3vw "Oswald", sans-serif
+}
+.footer-list-anchor {
+  font: 1.3em "Open Sans", sans-serif
+}
+.footer-social-section {
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  margin-top: 5px;
+}
+.footer-social-section::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 10px;
+  border-top: 1px solid;
+  width: calc(100% - 20px)
+}
+.footer-social-overlap {
+  position: relative;
+  z-index: 2;
+  background: rgb(55,55,55);
+  padding: 0 20px
+}
+.footer-social-connect {
+  display: flex;
+  align-items: center;
+  font: 3.5em "Oswald", sans-serif;
+  color: #fff
+}
+.footer-social-small {
+  font-size: 0.6em;
+  padding: 0px 20px
+}
+.footer-social-overlap > a {
+  font-size: 3em
+}
+.footer-social-overlap > a:not(:first-child) {
+  margin-left: 0.38em
+}
+.footer-bottom-section {
+  width: 100%;
+  padding: 10px;
+  border-top: 1px solid;
+  margin-top: 10px
+}
+.footer-bottom-section > div:first-child {
+  margin-right: auto
+}
+.footer-bottom-wrapper {
+  font-size: 1.5em;
+  color: #fff
+}
+.footer-address {
+  display: inline;
+  font-style: normal
+}
+@media only screen and (max-width: 768px) {
+  .footer-list-header {
+    font-size: 2em
+  }
+  .footer-list-anchor {
+    font-size: 1.1em
+  }
+  .footer-social-connect {
+    font-size: 2.5em
+  }
+  .footer-social-overlap > a {
+    font-size: 2.24em
+  }
+  .footer-bottom-wrapper {
+    font-size: 1.3em
+  }
+}
+@media only screen and (max-width: 568px) {
+  main {
+    font-size: 5em
+  }
+  .footer-list-top {
+    width: 100%
+  }
+  .footer-list-header {
+    font-size: 3em;
+  }
+  .footer-list-anchor {
+    font-size: 1.5em
+  }
+  .footer-social-section {
+    justify-content: center
+  }
+  .footer-social-section::after {
+    top: 25%
+  }
+  .footer-social-connect {
+    margin-bottom: 10px;
+    padding: 0 10px
+  }
+  .footer-social-overlap {
+    display: flex;
+    justify-content: center;
+  }
+  .footer-social-icons-wrapper {
+    width: 100%;
+    padding: 0
+  }
+  .footer-social-overlap > a:not(:first-child) {
+    margin-left: 20px;
+  }
+  .footer-bottom-section {
+    padding: 0 5px 10px 5px
+  }
+  .footer-bottom-wrapper {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px
+  }
+}
+@media only screen and (max-width: 480px) {
+  .footer-social-overlap > a {
+    margin: auto
+  }
+  .footer-social-overlap > a:not(:first-child) {
+    margin-left: 0;
+  }
+  .footer-bottom-rights {
+    display: block
+  }
+}
+@media only screen and (max-width: 320px) {
+  .footer-list-header {
+    font-size: 2.2em
+  }
+  .footer-list-anchor {
+    font-size: 1.2em
+  }
+  .footer-social-connect {
+    font-size: 2.4em
+  }
+  .footer-social-overlap > a {
+    font-size: 2.24em
+  }
+  .footer-bottom-wrapper {
+    font-size: 1.3em
+  }
+}
+    
+    
+    
+    </style>
+ <body>
+        <header class="header">
+                <div class="htop">
+                    <div id="checkoutdiv " class="container">
+                        <div class="row">
+                            <div class="col-md-6 text-xs-right ">(<span class="items text-muted"></span> <small> <b> Items</b></small>) <span class="total"></span> </div>
+                            <div class="col-md-6 text-xs-right"> <span class="btn btn-success" data-toggle="modal" data-target="#cart">Open Shopping Cart</span><a href="checkout.html" target="_blank" class="btn btn-primary">Proceed to checkout</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hbot">
+                        <div class="container">
+                            <nav class="navbar navbar-full navbar-white bg-inverse">
+                                <button class="navbar-toggler white float-xs-right hidden-sm-up" type="button" data-toggle="collapse" data-target="#nvbar"></button>
+                                <div id="nvbar" class="collapse navbar-toggleable-xs">
+                                    <ul class="nav navbar-nav float-sm-center ">
+                                        <li class="nav-item"><a class="nav-link" img src="Picture1.png"> </a> </li>
+                                        <li class="nav-item"><a class="nav-link" href="page2.html"> Go Home</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="shop1.html">Our Menu</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="shop1.html">Beverages</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="shop1.html">Contact</a></li>
+            
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+                <section>
+         
+<div class="containers">
+    <div class="image-container">
+      <img src="http://bit.ly/2Vdk2rX" alt="">
+    </div>
+    <div class="info-container">
+      <div class="shopping-cart hidden">
+        <div class="toast" id="basket-items">0</div>
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+      <div class="padding">
+        <div class="title">Margarita</div>
+        <div class="price">
+          <p class="label-price">Sale Price:</p>
+          <p class="old-price">$20<span class="cents">45</span></p>
+          <p class="new-price">$10<span class="cents">99</span></p>
+        </div>
+        <div class="order-controls">
+          <div class="spinner">
+            <div class="spinner-button" data-inc=-1>-</div>
+            <div class="spinner-value" id="current-amount">1</div>
+            <div class="spinner-button" data-inc=1>+</div>
+          </div>
+          <div class="basket-button" id="add-to-basket">Add to Basket</div>
+        </div>
+        <select class="size-selector"><i class="fas fa-angle-down"></i>
+          <option value="Medium" default>Small</option>
+          <option value="Medium" default>Medium</option>
+          <option value="Medium" default>Large</option>
+        </select>
+        
+      </div>
+      <div class="ingridients">
+        <div class="blocks">
+          <div class="block">
+            <div class="main">
+              <div class="icon"><i class="em em-pizza"></i></div>
+              <div class="content">Mazarella sauce, pepperoni, basicl, mozarella, italian sausage, bacon, mushrooms, red onions, black olives and green peppers</div>
+            </div>
+            <div class="secondary">
+              <div class="icon"><i class="em em-hot_pepper"></i></div>
+              <p>Spicy Chilli Spice, Mexic</p>
+              <div class="icon"><i class="em em-avocado"></i></div>
+              <p>Avocado</p>
+            </div>
+          </div>
+          <div class="block">
+            <div class="main">
+              <div class="icon"><i class="em em-pizza"></i></div>
+              <div class="content">Mazarella sauce, pepperoni, basicl, mozarella, italian sausage, bacon, mushrooms, red onions, black olives and green peppers</div>
+            </div>
+            <div class="secondary">
+              <div class="icon"><i class="em em-hot_pepper"></i></div>
+              <p>Spicy Chilli Spice, Mexic</p>
+              <div class="icon"><i class="em em-avocado"></i></div>
+              <p>Avocado</p>
+            </div>
+          </div>
+          <div class="block">
+            <div class="main">
+              <div class="icon"><i class="em em-pizza"></i></div>
+              <div class="content">Mazarella sauce, pepperoni, basicl, mozarella, italian sausage, bacon, mushrooms, red onions, black olives and green peppers</div>
+            </div>
+            <div class="secondary">
+              <div class="icon"><i class="em em-hot_pepper"></i></div>
+              <p>Spicy Chilli Spice, Mexic</p>
+              <div class="icon"><i class="em em-avocado"></i></div>
+              <p>Avocado</p>
+            </div>
+          </div>
+          <div class="block">
+            <div class="main">
+              <div class="icon"><i class="em em-pizza"></i></div>
+              <div class="content">Mazarella sauce, pepperoni, basicl, mozarella, italian sausage, bacon, mushrooms, red onions, black olives and green peppers</div>
+            </div>
+            <div class="secondary">
+              <div class="icon"><i class="em em-hot_pepper"></i></div>
+              <p>Spicy Chilli Spice, Mexic</p>
+              <div class="icon"><i class="em em-avocado"></i></div>
+              <p>Avocado</p>
+            </div>
+          </div>
+        </div>
+        <div class="pagination">
+         
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+        <footer class="flex-rw">
+                          
+                <ul class="footer-list-top">
+                  <li>
+                    <h4 class="footer-list-header">About Us</h4></li>
+                  <li><a href='/shop/about-mission' class="generic-anchor footer-list-anchor" itemprop="significantLink">GET TO KNOW US</a></li>
+                  <li><a href='/promos.html' class="generic-anchor footer-list-anchor" itemprop="significantLink">PROMOTIONS</a></li>
+                  <li><a href='/retailers/new-retailers.html' class="generic-anchor footer-list-anchor" itemprop="significantLink">Join Us</a></li>
+              
+               
+              
+                  <li><a href='/shop/about-show-schedule' class="generic-anchor footer-list-anchor" itemprop="significantLink">EVENTS</a></li>
+                </ul>
+            
+                <ul class="footer-list-top">
+                  <li id='help'>
+                    <h4 class="footer-list-header">CONTACT</h4></li>
+                 
+        
+                  <li id='find-a-store'><a href='/shop/store-locator' class="generic-anchor footer-list-anchor" itemprop="significantLink">STORE LOCATION</a></li>
+                  <li id='user-registration'><a href='/shop/user-registration?URL=' class="generic-anchor footer-list-anchor" itemprop="significantLink">NEW USERS</a></li>
+                  <li id='order-tracking'><a href='/shop/order-status' itemprop="significantLink" class="generic-anchor footer-list-anchor">ORDER STATUS</a></li>
+                </ul>
+                <section class="footer-social-section flex-rw">
+                    <span class="footer-social-overlap footer-social-connect">
+                    CONNECT <span class="footer-social-small">with</span> US
+                   
+                </section>
+                <section class="footer-bottom-section flex-rw">
+              <div class="footer-bottom-wrapper">   
+              <i class="fa fa-copyright" role="copyright">
+               
+              </i> 2019 Pizza Shop  <address class="footer-address" role="company address"> Kurunegala, Sri Lanka</address><span class="footer-bottom-rights"> - All Rights Reserved - </span>
+                  </div>
+                  <div class="footer-bottom-wrapper">
+                  <a href="/terms-of-use.html" class="generic-anchor" rel="nofollow">Terms</a> | <a href="/privacy-policy.html" class="generic-anchor" rel="nofollow">Privacy</a>
+                    </div>
+                </section>
+              </footer>
+         
+              <div class="modal fade" id="cart" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                <h4 class="modal-title">Shopping Cart</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-hover">
+                                    <thead class="thead-inverse">
+                                        <tr>
+                                            <th>Qty</th>
+                                            <th>Item Name</th>
+                                            <th>Cost</th>
+                                            <th class="text-xs-right">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="output"> </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Continue Shopping</button><a href="checkout.html" target="_blank" class="btn btn-primary">Proceed to checkout</a></div>
+                        </div>
+                    </div>
+                </div>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R" crossorigin="anonymous"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R" crossorigin="anonymous"></script>
+                <script>
+                    var shopcart = [];
+                    $(document).ready(function() {
+                        outputCart();
+                        $(".productItem").click(function(e) {
+                            e.preventDefault();
+                            var iteminfo = $(this.dataset)[0];
+                            iteminfo.qty = 1;
+                            var itemincart = false;
+                            $.each(shopcart, function(index, value) {
+                                //console.log(index + '  ' + value.id);
+                                if (value.id == iteminfo.id) {
+                                    value.qty = parseInt(value.qty) + parseInt(iteminfo.qty);
+                                    itemincart = true;
+                                }
+                            })
+                            if (!itemincart) {
+                                shopcart.push(iteminfo);
+                            }
+                            sessionStorage["sca"] = JSON.stringify(shopcart);
+                            outputCart();
+                            ///
+                        })
+            
+                        function outputCart() {
+                            if (sessionStorage["sca"] != null) {
+                                shopcart = JSON.parse(sessionStorage["sca"].toString());
+                                console.log(sessionStorage["sca"]);
+                                $('#checkoutdiv').show();
+                            }
+                            var holderHTML = '';
+                            var total = 0;
+                            var itemCnt = 0;
+                            $.each(shopcart, function(index, value) {
+                                console.log(value);
+                                var stotal = value.qty * value.price;
+                                total += stotal;
+                                itemCnt += parseInt(value.qty);
+                                holderHTML += '<tr><td>' + value.qty + '</td><td>#' + value.id + ' ' + value.name + '(' + value.s + ')</td><td> ' + formatMoney(value.price) + ' </td><td class="text-xs-right"> ' + formatMoney(stotal) + '</td></tr>';
+                            })
+                            holderHTML += '<tr><td colspan="3" class="text-xs-right">Total</td><td class="text-xs-right">' + formatMoney(total) + '</td></tr>';
+                            $('#output').html(holderHTML);
+                            $('.total').html(formatMoney(total));
+                            $('.items').html(itemCnt);
+                        }
+            
+                        function formatMoney(n) {
+                            return '$' + (n / 100).toFixed(2);
+                        }
+                    })
+               
+            
+            $(function() {
+            
+            
+                 var SliderModule = (function() {
+                     var pb = {};
+                     pb.el = $('#slider');
+                     pb.items = {
+                         panels: pb.el.find('.slider-wrapper > li'),
+                     }
+            
+            
+                     var SliderInterval,
+                         currentSlider = 0,
+                         nextSlider = 1,
+                         lengthSlider = pb.items.panels.length;
+            
+                     pb.init = function(settings) {
+                         this.settings = settings || {duration: 8000};
+                         var items = this.items,
+                             lengthPanels = items.panels.length,
+                             output = '';
+            
+                         for(var i = 0; i < lengthPanels; i++) {
+                             if(i == 0) {
+                                 output += '<li class="active"></li>';
+                             } else {
+                                 output += '<li></li>';
+                             }
+                         }
+            
+                         $('#control-buttons').html(output);
+            
+                         
+                         activateSlider();
+                 
+                         $('#control-buttons').on('click', 'li', function(e) {
+                             var $this = $(this);
+                             if(!(currentSlider === $this.index())) {
+                                 changePanel($this.index());
+                             }
+                         });
+            
+                     }
+            
+                
+                     var activateSlider = function() {
+                         SliderInterval = setInterval(pb.startSlider, pb.settings.duration);
+                     }
+            
+                 
+                     pb.startSlider = function() {
+                         var items = pb.items,
+                             controls = $('#control-buttons li');
+                 
+                         if(nextSlider >= lengthSlider) {
+                             nextSlider = 0;
+                             currentSlider = lengthSlider-1;
+                         }
+            
+                         controls.removeClass('active').eq(nextSlider).addClass('active');
+                         items.panels.eq(currentSlider).fadeOut('slow');
+                         items.panels.eq(nextSlider).fadeIn('slow');
+            
+                         
+                         currentSlider = nextSlider;
+                         nextSlider += 1;
+                     }
+            
+                     var changePanel = function(id) {
+                         clearInterval(SliderInterval);
+                         var items = pb.items,
+                             controls = $('#control-buttons li');
+                         
+                         if(id >= lengthSlider) {
+                             id = 0;
+                         } else if(id < 0) {
+                             id = lengthSlider-1;
+                         }
+            
+                         controls.removeClass('active').eq(id).addClass('active');
+                         items.panels.eq(currentSlider).fadeOut('slow');
+                         items.panels.eq(id).fadeIn('slow');
+            
+                 
+                         currentSlider = id;
+                         nextSlider = id+1;
+                         
+                         activateSlider();
+                     }
+            
+                    return pb;
+                 }());
+            
+                 SliderModule.init({duration: 4000});
+            
+            });
+            const MAX_AMOUNT = 10;
+
+$(document).ready(function() {
+  $("select").niceSelect();
+  $(".nice-select").append(`<i class="fas fa-angle-down"></i>`);
+
+  const numberOfBlocks = $(".block").length;
+  for (let i = 0; i < numberOfBlocks; i++) {
+    $(".pagination").append(`<div class="page"></page>`);
+  }
+  const $pages = $(".page");
+  $pages.eq(0).addClass("active");
+
+  // Events for pagination
+  $pages.on("click", event => {
+    const $node = $(event.target);
+    $pages.removeClass("active");
+    $node.addClass("active");
+
+    const index = $pages.index($node);
+    $(".blocks").css({
+      transform: `translateX(${-384 * index}px)`
+    });
+  });
+
+  // Events for +/-
+  let currentAmount = 1;
+  const $cur = $("#current-amount");
+  const $basket = $("#add-to-basket");
+  const $basketItems = $("#basket-items");
+
+  $(".spinner-button").on("click", event => {
+    const $node = $(event.target);
+    const inc = $node.data("inc");
+    console.log(inc);
+    currentAmount += inc;
+    if (currentAmount <= 0) {
+      currentAmount = 0;
+      $cur.addClass("disabled");
+      $basket.addClass("disabled");
+    } else {
+      $cur.removeClass("disabled");
+      $basket.removeClass("disabled");
+    }
+    if (currentAmount > MAX_AMOUNT) {
+      currentAmount = MAX_AMOUNT;
+    }
+    $cur.text(currentAmount);
+  });
+
+  let basketAmount = 0;
+  $basket.on("click", event => {
+    const $node = $(event.target);
+    if (!$node.hasClass("disabled")) {
+      basketAmount += currentAmount;
+      $basketItems.text(basketAmount).addClass('pulse')
+     
+      setTimeout(()=>{
+        $basketItems.removeClass('pulse')
+      }, 750)
+      
+      $(".shopping-cart").removeClass("hidden");
+    }
+  });
+});
+
+                </script>
+
+
+
+ </body>
+
+ </html>

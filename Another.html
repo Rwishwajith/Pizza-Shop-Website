@@ -1,0 +1,1472 @@
+<html>
+    <head>
+            <title>Dine In</title>
+            <link rel="icon" type="image/ico" href="favicon.png">
+            <meta charset="UTF-8">
+							
+						
+						
+								<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+								<script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js"></script>
+								<script src="local.js"></script>
+						
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+                                
+                                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+                                <link rel="stylesheet" href="css/main.css">
+                                <link href="https://fonts.googleapis.com/css?family=Dosis|PT+Sans" rel="stylesheet">
+    </head>
+    <style>
+      
+*, *::after, *::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Open Sans", sans-serif;
+  color: #150716;
+  background-color:midnightblue;
+}
+
+a {
+  color:teal;
+  text-decoration: none;
+}
+
+
+.cd-header {
+  position: relative;
+  height: 200px;
+
+  background-image:url("https://images6.alphacoders.com/912/912620.jpg" )
+}
+.cd-header h1 {
+  color: #ffffff;
+  line-height: 850px;
+  text-align: Center;
+  font-size: 3.4rem;
+  font-weight: 1000;
+  top: 200px;
+}
+@media only screen and (min-width: 1170px) {
+  .cd-header {
+    height: 180px;
+  }
+  .cd-header h1 {
+    line-height: 180px;
+  }
+}
+
+.cd-main-content {
+  position: relative;
+  min-height: 100vh;
+}
+.cd-main-content:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.cd-main-content.is-fixed .cd-tab-filter-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.cd-main-content.is-fixed .cd-gallery {
+  padding-top: 76px;
+}
+.cd-main-content.is-fixed .cd-filter {
+  position: fixed;
+  height: 100vh;
+  overflow: hidden;
+}
+.cd-main-content.is-fixed .cd-filter form {
+  height: 100vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.cd-main-content.is-fixed .cd-filter-trigger {
+  position: fixed;
+}
+@media only screen and (min-width: 768px) {
+  .cd-main-content.is-fixed .cd-gallery {
+    padding-top: 90px;
+  }
+}
+@media only screen and (min-width: 1170px) {
+  .cd-main-content.is-fixed .cd-gallery {
+    padding-top: 100px;
+  }
+}
+
+
+.cd-tab-filter-wrapper {
+  background-color: #ffffff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+  z-index: 1;
+}
+.cd-tab-filter-wrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.cd-tab-filter {
+  /* tabbed navigation style on mobile - dropdown */
+  position: relative;
+  height: 50px;
+  width: 140px;
+  margin: 0 auto;
+  z-index: 1;
+}
+.cd-tab-filter::after {
+  /* small arrow icon */
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("../img/cd-icon-arrow.svg") no-repeat center center;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+.cd-tab-filter ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #131313;
+  box-shadow: inset 0 -2px 0 #41307c;
+}
+.cd-tab-filter li {
+  display: none;
+}
+.cd-tab-filter li:first-child {
+  /* this way the placehodler is alway visible */
+  display: block;
+}
+.cd-tab-filter a {
+  display: block;
+  /* set same size of the .cd-tab-filter */
+  height: 50px;
+  width: 140px;
+  line-height: 50px;
+  padding-left: 14px;
+}
+.cd-tab-filter a.selected {
+  background: #41307c;
+  color: #ffffff;
+}
+.cd-tab-filter.is-open::after {
+  /* small arrow rotation */
+  -webkit-transform: translateY(-50%) rotate(-180deg);
+  -moz-transform: translateY(-50%) rotate(-180deg);
+  -ms-transform: translateY(-50%) rotate(-180deg);
+  -o-transform: translateY(-50%) rotate(-180deg);
+  transform: translateY(-50%) rotate(-180deg);
+}
+.cd-tab-filter.is-open ul {
+  box-shadow: inset 0 -2px 0 #41307c, 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.cd-tab-filter.is-open ul li {
+  display: block;
+}
+.cd-tab-filter.is-open .placeholder a {
+  /* reduces the opacity of the placeholder on mobile when the menu is open */
+  opacity: .4;
+}
+@media only screen and (min-width: 768px) {
+  .cd-tab-filter {
+    /* tabbed navigation style on medium devices */
+    width: auto;
+    cursor: auto;
+  }
+  .cd-tab-filter::after {
+    /* hide the arrow */
+    display: none;
+  }
+  .cd-tab-filter ul {
+    background: transparent;
+    position: static;
+    box-shadow: none;
+    text-align: center;
+  }
+  .cd-tab-filter li {
+    display: inline-block;
+  }
+  .cd-tab-filter li.placeholder {
+    display: none !important;
+  }
+  .cd-tab-filter a {
+    display: inline-block;
+    padding: 0 1em;
+    width: auto;
+    color: #0e0d0d;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
+  .no-touch .cd-tab-filter a:hover {
+    color: #41307c;
+  }
+  .cd-tab-filter a.selected {
+    background: transparent;
+    color: #41307c;
+    /* create border bottom using box-shadow property */
+    box-shadow: inset 0 -2px 0 #41307c;
+  }
+  .cd-tab-filter.is-open ul li {
+    display: inline-block;
+  }
+}
+@media only screen and (min-width: 1170px) {
+  .cd-tab-filter {
+    /* tabbed navigation on big devices */
+    width: 100%;
+    float: right;
+    margin: 0;
+    -webkit-transition: width 0.3s;
+    -moz-transition: width 0.3s;
+    transition: width 0.3s;
+  }
+  .cd-tab-filter.filter-is-visible {
+    /* reduce width when filter is visible */
+    width: 80%;
+  }
+}
+
+/* -------------------------------- 
+
+xgallery 
+
+-------------------------------- */
+.cd-gallery {
+  padding: 26px 5%;
+  width: 100%;
+}
+.cd-gallery li {
+  margin-bottom: 1.6em;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+.cd-gallery li.gap {
+  /* used in combination with text-align: justify to align gallery elements */
+  opacity: 0;
+  height: 0;
+  display: inline-block;
+}
+.cd-gallery img {
+  display: block;
+  width: 100%;
+  cursor:pointer;
+}
+.cd-gallery .cd-fail-message {
+  display: none;
+  text-align: center;
+}
+@media only screen and (min-width: 768px) {
+  .cd-gallery {
+    padding: 40px 3%;
+  }
+  .cd-gallery ul {
+    text-align: justify;
+  }
+  .cd-gallery ul:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .cd-gallery li {
+    width: 48%;
+    margin-bottom: 2em;
+  }
+}
+@media only screen and (min-width: 1170px) {
+  .cd-gallery {
+    padding: 50px 2%;
+    float: right;
+    -webkit-transition: width 0.3s;
+    -moz-transition: width 0.3s;
+    transition: width 0.3s;
+  }
+  .cd-gallery li {
+    width: 23%;
+  }
+  .cd-gallery.filter-is-visible {
+    /* reduce width when filter is visible */
+    width: 80%;
+  }
+}
+
+.cd-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 4px 4px 20px transparent;
+  z-index: 2;
+  /* Force Hardware Acceleration in WebKit */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-transition: -webkit-transform 0.3s, box-shadow 0.3s;
+  -moz-transition: -moz-transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.cd-filter::before {
+
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  background-color:rgb(23, 0, 128);
+  z-index: 2;
+}
+.cd-filter form {
+  padding: 70px 20px;
+}
+.cd-filter .cd-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 50px;
+  line-height: 50px;
+  width: 60px;
+  color: #ffffff;
+  font-size: 1.3rem;
+  text-align: center;
+  background: #abc903;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  z-index: 3;
+}
+.no-touch .cd-filter .cd-close:hover {
+  background: #12ca12;
+}
+.cd-filter.filter-is-visible {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
+}
+.cd-filter.filter-is-visible .cd-close {
+  opacity: 1;
+}
+@media only screen and (min-width: 1170px) {
+  .cd-filter {
+    width: 20%;
+  }
+  .cd-filter form {
+    padding: 70px 10%;
+  }
+}
+
+.cd-filter-trigger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  line-height: 50px;
+  width: 60px;
+  /* image replacement */
+  overflow: hidden;
+  text-indent: 100%;
+  color: transparent;
+  white-space: nowrap;
+  background: transparent url("../img/cd-icon-filter.svg") no-repeat center center;
+  z-index: 3;
+}
+.cd-filter-trigger.filter-is-visible {
+  pointer-events: none;
+}
+@media only screen and (min-width: 1170px) {
+  .cd-filter-trigger {
+    width: auto;
+    left: 2%;
+    text-indent: 0;
+    color: #9a9a9a;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding-left: 24px;
+    background-position: left center;
+    -webkit-transition: color 0.3s;
+    -moz-transition: color 0.3s;
+    transition: color 0.3s;
+  }
+  .no-touch .cd-filter-trigger:hover {
+    color: #83cf07;
+  }
+  .cd-filter-trigger.filter-is-visible, .cd-filter-trigger.filter-is-visible:hover {
+    color: #ffffff;
+  }
+}
+
+/* -------------------------------- 
+
+xcustom form elements 
+
+-------------------------------- */
+.cd-filter-block {
+  margin-bottom: 1.6em;
+}
+.cd-filter-block h4 {
+  /* filter block title */
+  position: relative;
+  margin-bottom: .2em;
+  padding: 10px 0 10px 20px;
+  color: #161515;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.3rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+.no-touch .cd-filter-block h4:hover {
+  color: #bbcc1e;
+}
+.cd-filter-block h4::before {
+  /* arrow */
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: url("../img/cd-icon-arrow.svg") no-repeat center center;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  transition: transform 0.3s;
+}
+.cd-filter-block h4.closed::before {
+  -webkit-transform: translateY(-50%) rotate(-90deg);
+  -moz-transform: translateY(-50%) rotate(-90deg);
+  -ms-transform: translateY(-50%) rotate(-90deg);
+  -o-transform: translateY(-50%) rotate(-90deg);
+  transform: translateY(-50%) rotate(-90deg);
+}
+.cd-filter-block input, .cd-filter-block select,
+.cd-filter-block .radio-label::before,
+.cd-filter-block .checkbox-label::before {
+  /* shared style for input elements */
+  font-family: "Open Sans", sans-serif;
+  border-radius: 0;
+  background-color: #ffffff;
+  border: 2px solid #e6e6e6;
+}
+.cd-filter-block input[type='search'],
+.cd-filter-block input[type='text'],
+.cd-filter-block select {
+  width: 100%;
+  padding: .8em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  box-shadow: none;
+}
+.cd-filter-block input[type='search']:focus,
+.cd-filter-block input[type='text']:focus,
+.cd-filter-block select:focus {
+  outline: none;
+  background-color: #ffffff;
+  border-color: #41307c;
+}
+.cd-filter-block input[type='search'] {
+  /* custom style for the search element */
+  border-color: transparent;
+  background-color: #f8f2f2;
+  /* prevent jump - ios devices */
+  font-size: 1.6rem !important;
+}
+.cd-filter-block input[type='search']::-webkit-search-cancel-button {
+  display: none;
+}
+.cd-filter-block .cd-select {
+  /* select element wrapper */
+  position: relative;
+}
+.cd-filter-block .cd-select::after {
+  /* switcher arrow for select element */
+  content: '';
+  position: absolute;
+  z-index: 1;
+  right: 14px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: url("../img/cd-icon-arrow.svg") no-repeat center center;
+  pointer-events: none;
+}
+.cd-filter-block select {
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+.cd-filter-block select::-ms-expand {
+  display: none;
+}
+.cd-filter-block .list li {
+  position: relative;
+  margin-bottom: .8em;
+}
+.cd-filter-block .list li:last-of-type {
+  margin-bottom: 0;
+}
+.cd-filter-block input[type=radio],
+.cd-filter-block input[type=checkbox] {
+  /* hide original check and radio buttons */
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  z-index: 2;
+}
+.cd-filter-block .checkbox-label,
+.cd-filter-block .radio-label {
+  padding-left: 24px;
+  font-size: 1.4rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.cd-filter-block .checkbox-label::before, .cd-filter-block .checkbox-label::after,
+.cd-filter-block .radio-label::before,
+.cd-filter-block .radio-label::after {
+  /* custom radio and check boxes */
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.cd-filter-block .checkbox-label::before,
+.cd-filter-block .radio-label::before {
+  width: 16px;
+  height: 16px;
+  left: 0;
+}
+.cd-filter-block .checkbox-label::after,
+.cd-filter-block .radio-label::after {
+  /* check mark - hidden */
+  display: none;
+}
+.cd-filter-block .checkbox-label::after {
+  /* check mark style for check boxes */
+  width: 16px;
+  height: 16px;
+  background: url("../img/cd-icon-check.svg") no-repeat center center;
+}
+.cd-filter-block .radio-label::before,
+.cd-filter-block .radio-label::after {
+  border-radius: 50%;
+}
+.cd-filter-block .radio-label::after {
+  /* check mark style for radio buttons */
+  width: 6px;
+  height: 6px;
+  background-color: #ffffff;
+  left: 5px;
+}
+.cd-filter-block input[type=radio]:checked + label::before,
+.cd-filter-block input[type=checkbox]:checked + label::before {
+  border-color: #41307c;
+  background-color: #41307c;
+}
+.cd-filter-block input[type=radio]:checked + label::after,
+.cd-filter-block input[type=checkbox]:checked + label::after {
+  display: block;
+}
+
+@-moz-document url-prefix() {
+  /* hide custom arrow on Firefox - select element */
+  .cd-filter-block .cd-select::after {
+    display: none;
+  }
+}
+
+
+.mixItems{
+  padding: 2% 2% 0;
+  text-align: justify;
+  font-size: 0.1px;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+}
+
+.mixItems:after{
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+
+.mixItems .mix,
+.mixItems .gap{
+  display: inline-block;
+  width: 49%;
+  overflow: hidden;
+}
+
+.mixItems .mix{
+  text-align: left;
+  background-color: #cbe682;
+  margin-bottom: 2%;
+  display: none;
+  
+}
+
+.mixItems .mix.gridView img{
+  width: 100%;
+  display:block;
+}
+.mixItems .mix.listView img{
+  display:none;
+}
+
+.mixItems .mix .abstract{
+    color: #000;
+    font-size: 12px;
+    padding: 0 1.5em 1.5em 1.5em;
+}
+.mixItems .mix .newsHead{
+    color: rgb(0, 0, 0);
+    font-size: 12px;
+    padding: 1.5em 1.5em 0 1.5em;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+@media all and (min-width: 420px){
+  .mixItems .mix,
+  .mixItems .gap{
+    width: 32%;
+  }
+}
+
+@media all and (min-width: 640px){
+  .mixItems .mix,
+  .mixItems .gap{
+    width: 23.5%;
+  }
+}
+
+/**
+ * List Styles
+ */
+
+.mixItems.list .mix{
+  width: 100%;
+}
+
+.mixItems.list .mix:before{
+  padding-top: 40px;
+}
+
+.controls #ChangeToList span 
+.controls #ChangeToGrid span {
+    vertical-align: middle;
+}
+.controls #ChangeToList span.active, 
+.controls #ChangeToGrid span.active  {
+  opacity:1;
+}
+.controls #ChangeToList span.inactive, 
+.controls #ChangeToGrid span.inactive  {
+  opacity:0.5;
+}
+.controls #ChangeToList:hover span.inactive, 
+.controls #ChangeToGrid:hover span.inactive  {
+  opacity:0.75;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    font-family: 'Exo', sans-serif;
+}
+
+
+.context {
+    width: 100%;
+    position:absolute;
+    top:10vh;
+    left:1ch;
+    
+}
+
+.context h1{
+    text-align:center;
+    color: #fff;
+    font-size: 50px;
+}
+
+
+.area{
+    background:#ffffff;  
+    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+    width: 100%;
+    height:200vh;
+    
+   
+}
+
+.circles{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(126, 199, 8, 0.835);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+    
+}
+
+.circles li:nth-child(1){
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+
+.circles li:nth-child(2){
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3){
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4){
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5){
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6){
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7){
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8){
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9){
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10){
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+
+
+@keyframes animate {
+
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+}
+* {
+  box-sizing: border-box;
+}
+p {
+  font-size: 1em;
+}
+ 
+.navbar-brand {
+  justify-content: space-around;
+  width:100%;
+  background-color:rgb(22, 22, 22);
+  font-family: 'PT Sans', sans-serif;
+}
+a:link, a:visited {
+  color:rgb(244, 245, 244);
+}
+nav.navbar a:hover {
+  color: rgb(178, 243, 238);
+}
+
+        #output {
+            clear: both;
+        }
+        
+        #checkoutdiv {
+            display: none;
+        }
+        
+        .footer {
+            background-color: darkgrey;
+            color:teal;
+        }
+
+        .container
+        {
+             background:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet";
+            
+                
+                <link rel="stylesheet" type="text/css" href="assets/css/demo.css">
+        }
+        body{
+  background: rgb(76, 109, 33);
+
+  color: #0f0f0f;
+  
+}
+
+a{
+  color: #f2f2f2;
+  text-decoration: none;
+}
+
+#footer{
+  margin-bottom: -500px;
+  clear: both;
+}
+
+
+
+.lookWrap{
+  position: relative; 
+  background-color:teal;
+  float: left;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+#look{
+  margin: auto;
+  width: 700px;
+}
+
+
+
+.section h3{
+  font-weight: normal;
+  font: 12pt Georgia;
+  text-transform: uppercase;
+  color: #f2f2f2;
+}
+
+.section a{
+  display: block;
+}
+
+  
+        </style>
+        <body>
+                <nav class="navbar">
+                        <div class="navbar-brand">
+                          
+                     <a href="#" > <img src="logo - Copy.png" onclick="location.href='one.html'">  </a>
+                          <a href="#" class="navbar-item"></a> <a class="nav-link" href="Another.html">Home</a>
+                          <a href="#" class="navbar-item"></a> <a class="nav-link" href="Dine in Menu.html">Our Menu</a>
+                              <a href="#" class="navbar-item"></a> <a class="nav-link" href="dineinbeverage.html">Beverages</a>
+                              <a href="#" class="navbar-item"></a> <a class="nav-link" href="contact.html">Contact</a>
+                             
+                        </div>
+                     </nav>
+                     <div class="area" >
+                        
+              
+                    
+                            <ul class="circles">
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    
+                            </ul>
+							<header class="cd-header">
+                                    <h1 style="letter-spacing:30px;text-align:center">PIZZA <span class="teal-text">  <img src="logo.png" alt="" style="float:inherit;width:120px;height:120px;align-content: center"> PARADISE </span> </h1>
+                                <p> </p>
+                                
+                                
+							</header>
+						
+							<main class="cd-main-content">
+								<div class="cd-tab-filter-wrapper">
+									<div class="cd-tab-filter">
+										<ul class="cd-filters">
+											<li class="placeholder"> 
+												<a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
+											</li> 
+											<li class="filter"><a class="selected" href="#0" data-type="all">All</a></li>
+											<li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Classic</a></li>
+											<li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Signature</a></li>
+											<button id="ChangeToGrid"><span class="active">&boxplus;</span></button>
+											<button id="ChangeToList"><span class="inactive">&boxminus;</span></button>
+										</ul> <!-- cd-filters -->
+									</div> <!-- cd-tab-filter -->
+								</div> <!-- cd-tab-filter-wrapper -->
+						
+						
+								<section class="cd-gallery">
+									<ul>
+										<div id="mixContainer" class="mixItems">
+											<div class="mix color-1 check1 radio2 option3" >
+											<img src="http://capripizzagrill.com/files/2014/04/01.jpg"  type="button" onclick="location.href='homedinein.html'">
+												<p class="newsHead" type="button" onclick="location.href='home.html'" >Chk Hawaiian</p> <br>
+                                                <p class="abstract">Chicken ham & pineapple with a double layer of mozzarella cheese. </p> <br>
+                                                <p class="newsHead"  > From RS 500</p>
+                                        
+                            
+											</div>
+											<div class="mix color-1 check1 radio2 option3" data-myorder="2016" data-date="20160115">
+                                                    <img src="https://hdwallpaperim.com/wp-content/uploads/2017/08/31/151404-pizza-748x421.jpg"  type="button" onclick="location.href='homedinein.html'">
+                                                    <p class="newsHead" type="button" onclick="location.href='home.html'" >Chicken Bacon</p><br>
+                                                    <p class="abstract">Chicken bacon, onions & green chillies with a double layer of mozzarella cheese.</p><br>
+                                                    <p class="newsHead"  > From RS 400</p>
+											</div>
+						
+											<div class="mix color-1 check1 radio2 option3" data-myorder="2016" data-date="20160115">
+                                                    <img src="https://onlyinoakland.org/wp-content/uploads/2013/08/saycheese.jpg"  type="button" onclick="location.href='homedinein.html'">
+                                                    <p class="newsHead" type="button" onclick="location.href='home.html'" >Devilled Chicken</p>
+                                                    <br>
+                                                    <p class="abstract">Devilled chicken in spicy sauce with a double layer of mozzarella cheese.</p>
+                                                    <br>
+                                                    <p class="newsHead"  > From RS 600</p>
+											</div>
+											<div class="mix color-1 check3 radio2 option4" data-myorder="2016" data-date="20160115">
+                                                    <img src="https://images.wallpaperscraft.com/image/pizza_batch_knife_fork_20903_1920x1080.jpg"  type="button" onclick="location.href='homedinein.html'">
+                                                    <p class="newsHead" type="button" onclick="location.href='home.html'" >Gluten Free</p>
+                                                    <br>
+                                                    <p class="abstract">Chicken bacon, chicken sausage, double layer of mozzarella cheese.</p>
+                                                    <br>
+                                                    <p class="newsHead"  > From RS 500</p>
+											</div>
+                      <div class="mix color-1 check3 radio2 option4" data-myorder="2016" data-date="20160115">
+                          <img src="https://images.wallpaperscraft.com/image/pizza_batch_knife_fork_20903_1920x1080.jpg"  type="button" onclick="location.href='homedinein.html'">
+                          <p class="newsHead" type="button" onclick="location.href='home.html'" >Super Supreme</p>
+                          <br>
+                          <p class="abstract">Chicken bacon, chicken sausage, double layer of mozzarella cheese.</p>
+                          <br>
+                          <p class="newsHead"  > From RS 400</p>
+											</div>
+											<div class="mix color-2 check2 radio3 option3" data-myorder="2016" data-date="20160115">
+                                                    <img src="https://images-gmi-pmc.edge-generalmills.com/9fc580b7-3561-4528-95fc-d20a0bf5545f.jpg"  type="button" onclick="location.href='homedinein.html'">
+                                                    <p class="newsHead" type="button" onclick="location.href='home.html'" >BBQ Chicken</p>
+                                                    <br>
+                                                    <p class="abstract">BBQ chicken accompanied by spicy jalapenos, onions and a double layer.</p>
+                                                    <br>
+                                                    <p class="newsHead"  > From RS 700</p>
+											</div>
+											<div class="mix color-2 check2 radio2 option1" data-myorder="2016" data-date="20160115">
+                                                    <img src="https://media.fox5dc.com/media.fox5dc.com/photo/2018/09/20/getty_pizza_1537444422303_6095945_ver1.0_640_360.jpg"  type="button" onclick="location.href='homedinein.html'">
+                                                    <p class="newsHead" type="button" onclick="location.href='home.html'" >Butter Chicken Masala</p>
+                                                    <br>
+                                                    <p class="abstract">The ever famous Butter Masala Chicken together with a layer of cream cheese.</p>
+                                                    <br>
+                                                    <p class="newsHead"  > From RS 500</p>
+											</div>
+											<div class="mix color-2 check2 radio2 option1" data-myorder="2016" data-date="20160115">
+                                                    <img src="https://406o0n1h3zmj4c7qr343gnb3-wpengine.netdna-ssl.com/wp-content/uploads/2018/08/C9aOY7EXsAIBQLv-2.jpg"  type="button" onclick="location.href='homedinein.html'">
+                                                    <p class="newsHead" type="button" onclick="location.href='home.html'" >Devilled Beef</p>
+                                                    <br>
+                                                    <p class="abstract">Pieces of devilled beef complemented by fresh capsicums, onions</p>
+                                                    <br>
+                                                    <p class="newsHead"  > From RS 600</p>
+											</div>
+											<div class="mix color-1 check1 radio3 option4" data-myorder="2016" data-date="20160115">
+                                                    <img src="https://d2gk7xgygi98cy.cloudfront.net/1418-4-facebook.jpg"  type="button" onclick="location.href='homedinein.html'">
+                                                    <p class="newsHead" type="button" onclick="location.href='home.html'" >Tandoori Chicken</p>
+                                                    <br>
+                                                    <p class="abstract">Tandoori chicken & onions with a double layer of mozzarella cheese.</p>
+                                                    <br>
+                                                    <p class="newsHead"  > From RS 500</p>
+											</div>
+											<div class="mix color-2 check1 radio2 option3" data-myorder="2016" data-date="20160115">
+                                                    <img src="http://www.gavinospizza.com/images/ss_pizza.jpg"  type="button" onclick="location.href='homedinein.html'">
+                                                    <p class="newsHead" type="button" onclick="location.href='home.html'" >Sausage Delight</p>
+                                                    <p class="abstract">Chicken sausages & onions with a double layer of mozzarella cheese</p>
+                                                    <p class="newsHead"  > From RS 400</p>
+                                            </div>
+                                            <div class="mix color-2 check1 radio2 option3" data-myorder="2016" data-date="20160115">
+                                                    <img src="https://orders.fazolis.com/usercontent/product_sub_img/8000-9178OnlineTakeout800x400_WHOLE%20CHEESE1.jpg"  type="button" onclick="location.href='homedinein.html'">
+                                                    <p class="newsHead" type="button" onclick="location.href='home.html'" >Cheese Dip</p>
+                                                    <p class="abstract">Onions with a double layer of mozzarella cheese</p>
+                                                    <p class="newsHead"  > From RS 400</p>
+                                            </div>
+                                            <div class="mix color-2 check1 radio2 option3" data-myorder="2016" data-date="20160115">
+                                                    <img src="https://images-gmi-pmc.edge-generalmills.com/1c6d2ca5-085a-48fd-9b86-f8173060db18.jpg"  type="button" onclick="location.href='homedinein.html'">
+                                                    <p class="newsHead" type="button" onclick="location.href='home.html'" >Vegitable Delight</p>
+                                                    <p class="abstract">onions with a double layer of Vegitables</p>
+                                                    <p class="newsHead"  > From RS 600</p>
+											</div>
+										
+										</div>
+										<li class="gap"></li>
+										<li class="gap"></li>
+									</ul>
+									<div class="cd-fail-message">No results found</div>
+								</section> <!-- cd-gallery -->
+						
+								<div class="cd-filter">
+									<form>
+										<div class="cd-filter-block">
+											<h4>Search</h4>
+											
+											<div class="cd-filter-content">
+												<input type="search" placeholder="Enter Your Desire">
+											</div> <!-- cd-filter-content -->
+										</div> <!-- cd-filter-block -->
+						
+										<div class="cd-filter-block">
+											<h4>Check boxes</h4>
+						
+											<ul class="cd-filter-content cd-filters list">
+												<li>
+													<input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
+													<label class="checkbox-label" for="checkbox1">Spicy</label>
+												</li>
+						
+												<li>
+													<input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
+													<label class="checkbox-label" for="checkbox2">Non Spicy</label>
+												</li>
+						
+												<li>
+													<input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
+													<label class="checkbox-label" for="checkbox3"> Healthy </label>
+												</li>
+											</ul> <!-- cd-filter-content -->
+										</div> <!-- cd-filter-block -->
+						
+										<div class="cd-filter-block">
+											<h4>Select</h4>
+											
+											<div class="cd-filter-content">
+												<div class="cd-select cd-filters">
+													<select class="filter" name="selectThis" id="selectThis">
+														<option value="">Choose an option</option>
+														<option value=".option1">Thin Crust</option>
+														<option value=".option2">Double Crust</option>
+														<option value=".option3">Extra Cheese</option>
+														<option value=".option4">Vegetarian</option>
+													</select>
+												</div> <!-- cd-select -->
+											</div> <!-- cd-filter-content -->
+										</div> <!-- cd-filter-block -->
+						
+									</form>
+						
+									<a href="#0" class="cd-close">Close</a>
+								</div> <!-- cd-filter -->
+						
+								<a href="#0" class="cd-filter-trigger">Filters</a>
+							</main> <!-- cd-main-content -->
+							<script src="js/jquery-2.1.1.js"></script>
+							<script src="js/jquery.mixitup.min.js"></script>
+							<script src="js/main.js"></script> <!-- Resource jQuery -->
+					
+
+                            <div id="footer">
+                                  
+                                
+                                    <div class="lookWrap">
+                                      <div id="look">
+                                          <br>
+                                            <p>Follow Us On Social Media For Special Offers</p>
+                                            <br>
+                                            <img src="instagram-logo.png" alt="Smiley face" style="float:inherit;width:60px;height:60px;"> 
+                                            <img src="whatsapp.png" alt="Smiley face" style="float:inherit;width:60px;height:60px;"> 
+                                            <img src="facebook.png" alt="Smiley face" style="float:inherit;width:60px;height:60px;"> 
+                                            <img src="twitter-logo-silhouette.png" alt="Smiley face" style="float:inherit;width:60px;height:60px;"> 
+                                            <img src="youtube-logo.png" alt="Smiley face" style="float:inherit;width:60px;height:60px;"> 
+                                            <img src="google-plus.png" alt="Smiley face" style="float:inherit;width:60px;height:60px;">
+                                           <br>
+                                           <br>
+                                            <p> <img src="logo.png" alt="Smiley face" style="float:inherit;width:60px;height:60px;"> <br>&copy; 2019 Pizza Paradise | All Rights Reserved</p> <br>
+                                        </div>
+                                
+
+
+            <script>
+jQuery(document).ready(function($){
+	//open/close lateral filter
+	$('.cd-filter-trigger').on('click', function(){
+		triggerFilter(true);
+	});
+	$('.cd-filter .cd-close').on('click', function(){
+		triggerFilter(false);
+	});
+
+	function triggerFilter($bool) {
+		var elementsToTrigger = $([$('.cd-filter-trigger'), $('.cd-filter'), $('.cd-tab-filter'), $('.cd-gallery')]);
+		elementsToTrigger.each(function(){
+			$(this).toggleClass('filter-is-visible', $bool);
+		});
+	}
+
+	//mobile version - detect click event on filters tab
+	var filter_tab_placeholder = $('.cd-tab-filter .placeholder a'),
+	filter_tab_placeholder_default_value = 'Select',
+	filter_tab_placeholder_text = filter_tab_placeholder.text();
+	
+	$('.cd-tab-filter li').on('click', function(event){
+		//detect which tab filter item was selected
+		var selected_filter = $(event.target).data('type');
+
+		//check if user has clicked the placeholder item
+		if( $(event.target).is(filter_tab_placeholder) ) {
+			(filter_tab_placeholder_default_value == filter_tab_placeholder.text()) ? filter_tab_placeholder.text(filter_tab_placeholder_text) : filter_tab_placeholder.text(filter_tab_placeholder_default_value) ;
+			$('.cd-tab-filter').toggleClass('is-open');
+
+		//check if user has clicked a filter already selected 
+	} else if( filter_tab_placeholder.data('type') == selected_filter ) {
+		filter_tab_placeholder.text($(event.target).text());
+		$('.cd-tab-filter').removeClass('is-open');	
+
+	} else {
+			//close the dropdown and change placeholder text/data-type value
+			$('.cd-tab-filter').removeClass('is-open');
+			filter_tab_placeholder.text($(event.target).text()).data('type', selected_filter);
+			filter_tab_placeholder_text = $(event.target).text();
+			
+			//add class selected to the selected filter item
+			$('.cd-tab-filter .selected').removeClass('selected');
+			$(event.target).addClass('selected');
+		}
+	});
+	
+	//close filter dropdown inside lateral .cd-filter 
+	$('.cd-filter-block h4').on('click', function(){
+		$(this).toggleClass('closed').siblings('.cd-filter-content').slideToggle(300);
+	})
+
+	//fix lateral filter and gallery on scrolling
+	$(window).on('scroll', function(){
+		(!window.requestAnimationFrame) ? fixGallery() : window.requestAnimationFrame(fixGallery);
+	});
+
+	function fixGallery() {
+		var offsetTop = $('.cd-main-content').offset().top,
+		scrollTop = $(window).scrollTop();
+		( scrollTop >= offsetTop ) ? $('.cd-main-content').addClass('is-fixed') : $('.cd-main-content').removeClass('is-fixed');
+	}
+
+
+		buttonFilter.init();
+		$('.cd-gallery ul').mixItUp({
+			controls: {
+				enable: false
+			},
+			callbacks: {
+				onMixStart: function(){
+					$('.cd-fail-message').fadeOut(200);
+				},
+				onMixFail: function(){
+					$('.cd-fail-message').fadeIn(200);
+				}
+			}
+		});
+
+
+	var inputText;
+	var $matching = $();
+
+	var delay = (function(){
+		var timer = 0;
+		return function(callback, ms){
+			clearTimeout (timer);
+			timer = setTimeout(callback, ms);
+		};
+	})();
+
+	$(".cd-filter-content input[type='search']").keyup(function(){
+	  	// Delay function invoked to make sure user stopped typing
+	  	delay(function(){
+	  		inputText = $(".cd-filter-content input[type='search']").val().toLowerCase();
+	   		// Check to see if input field is empty
+	   		if ((inputText.length) > 0) {            
+	   			$('.mix').each(function() {
+	   				var $this = $(this);
+
+		        	// add item to be filtered out if input text matches items inside the title   
+		        	if($this.attr('class').toLowerCase().match(inputText)) {
+		        		$matching = $matching.add(this);
+		        	} else {
+		          		// removes any previously matched item
+		          		$matching = $matching.not(this);
+		          	}
+		          });
+	   			$('.cd-gallery ul').mixItUp('filter', $matching);
+	   		} else {
+	      		// resets the filter to show all item if input is empty
+	      		$('.cd-gallery ul').mixItUp('filter', 'all');
+	      	}
+	      }, 200 );
+	  });
+});
+
+
+	var buttonFilter = {
+  	// Declare any variables we will need as properties of the object
+  	$filters: null,
+  	groups: [],
+  	outputArray: [],
+  	outputString: '',
+
+  	// The "init" method will run on document ready and cache any jQuery objects we will need.
+  	init: function(){
+    	var self = this; // As a best practice, in each method we will asign "this" to the variable "self" so that it remains scope-agnostic. We will use it to refer to the parent "buttonFilter" object so that we can share methods and properties between all parts of the object.
+
+    	self.$filters = $('.cd-main-content');
+    	self.$container = $('.cd-gallery ul');
+
+    	self.$filters.find('.cd-filters').each(function(){
+    		var $this = $(this);
+
+    		self.groups.push({
+    			$inputs: $this.find('.filter'),
+    			active: '',
+    			tracker: false
+    		});
+    	});
+
+    	self.bindHandlers();
+    },
+
+  	// The "bindHandlers" method will listen for whenever a button is clicked. 
+  	bindHandlers: function(){
+  		var self = this;
+
+  		self.$filters.on('click', 'a', function(e){
+  			self.parseFilters();
+  		});
+  		self.$filters.on('change', function(){
+  			self.parseFilters();           
+  		});
+  	},
+
+  	parseFilters: function(){
+  		var self = this;
+
+	    // loop through each filter group and grap the active filter from each one.
+	    for(var i = 0, group; group = self.groups[i]; i++){
+	    	group.active = [];
+	    	group.$inputs.each(function(){
+	    		var $this = $(this);
+	    		if($this.is('input[type="radio"]') || $this.is('input[type="checkbox"]')) {
+	    			if($this.is(':checked') ) {
+	    				group.active.push($this.attr('data-filter'));
+	    			}
+	    		} else if($this.is('select')){
+	    			group.active.push($this.val());
+	    		} else if( $this.find('.selected').length > 0 ) {
+	    			group.active.push($this.attr('data-filter'));
+	    		}
+	    	});
+	    }
+	    self.concatenate();
+	},
+
+	concatenate: function(){
+		var self = this;
+
+    	self.outputString = ''; // Reset output string
+
+    	for(var i = 0, group; group = self.groups[i]; i++){
+    		self.outputString += group.active;
+    	}
+
+	    // If the output string is empty, show all rather than none:    
+	    !self.outputString.length && (self.outputString = 'all'); 
+
+    	// Send the output string to MixItUp via the 'filter' method:    
+    	if(self.$container.mixItUp('isLoaded')){
+    		self.$container.mixItUp('filter', self.outputString);
+    	}
+    }
+};
+
+	//// ----  relayout  ---- ////
+	var layout        = 'grid', // Store the current layout as a variable
+	    $mixContainer = $('#mixContainer'); 
+
+	    $('#ChangeToGrid').on('click', function () {
+	    	layout = 'grid';
+	    	$(this).find('span').removeClass('inactive').addClass('active');
+	    	$('#ChangeToList span').removeClass('active').addClass('inactive');
+	    	$('.mix img').css({ 'display': 'block', 'opacity': '0', maxHeight: "400px", width: "", height: "" });
+	    	$('.mix').css({ width: "", height: "" });
+
+	    	goGrid();
+
+	    	dropdownFilter.filterDates();
+
+	    	function showImg () {
+	    		$('.mix img').each(
+	    			function ( i ) {
+	    				$(this).delay(0 + (i * 34)).animate({ opacity: 1 }, 134, "swing");
+	    			}
+	    			)
+	    	};
+	    	function goGrid () {
+	    		$mixContainer.mixItUp('changeLayout', {
+				containerClass: layout // Change the mixContainer class to 'list'
+			}, showImg());
+	    	}
+	    });
+	    $('#ChangeToList').on('click', function () {
+	    	layout = 'list';
+	    	$(this).find('span').removeClass('inactive').addClass('active');
+	    	$('#ChangeToGrid span').removeClass('active').addClass('inactive');
+	    	hideImg();
+
+	    	dropdownFilter.filterDates();
+
+	    	function hideImg () {
+	    		$('.mix img').each(
+	    			function ( i ) {
+	    				$(this).css({ 'display': 'block', 'opacity': '0', height: "0" });
+	    			}, goList())
+	    	}; 
+	    	function goList () {
+	    		$('.mix').each(function ( i ) {
+	    			$(this).css({ 'width': '100%', 'opacity': '0.25', 'margin-top': '100px' });
+	    			$(this).delay(0 + (i * 34)).animate({ marginTop: '0px', 'opacity': '1' }, 200, "swing");
+	    		});
+
+	    		$mixContainer.mixItUp('changeLayout', {
+				containerClass: layout // Change the mixContainer class to 'list'
+			});
+	    	};
+	    }); 
+
+
+
+
+
+                </script>
+
+        </body>
+        
+</html>
+
